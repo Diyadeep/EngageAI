@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Attendance Overview - EngageAI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#FDF6E3;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100%;
+background:#1E1B4B;
+color:white;
+padding:30px 20px;
+}
+
+.sidebar h2{
+margin-bottom:40px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+margin:20px 0;
+}
+
+.sidebar ul li a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.sidebar ul li a.active{
+font-weight:700;
+color:#10B981;
+}
+
+.main{
+margin-left:260px;
+padding:30px;
+}
+
+.table-box{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+margin-top:20px;
+}
+
+.table-box h2{
+color:#1E1B4B;
+margin-bottom:20px;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+text-align:center;
+}
+
+table th{
+background:#1E1B4B;
+color:white;
+padding:15px;
+}
+
+table td{
+padding:14px;
+border-bottom:1px solid #ddd;
+}
+
+.badge-present{
+background:#D1FAE5;
+color:#065F46;
+padding:5px 14px;
+border-radius:20px;
+font-size:13px;
+font-weight:600;
+display:inline-block;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>EngageAI</h2>
+
+<ul>
+
+<li><a href="/teacher-dashboard">Dashboard</a></li>
+
+<li><a href="/teacher/profile">My Profile</a></li>
+
+<li><a href="/teacher/classes">Classes</a></li>
+
+<li><a href="/teacher/attendance" class="active">Attendance</a></li>
+
+<li><a href="/teacher/reports">Reports</a></li>
+
+<li><a href="/logout">Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>Student Attendance Overview</h1>
+
+<div class="table-box">
+
+<h2>Class Attendance Logs</h2>
+
+{% if records %}
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Student Name</th>
+<th>Roll Number</th>
+<th>Course & Semester</th>
+<th>Class Subject</th>
+<th>Class Date</th>
+<th>Time Range</th>
+<th>Status</th>
+<th>Joined At</th>
+</tr>
+</thead>
+
+<tbody>
+{% for r in records %}
+<tr>
+<td>{{ r[0] }}</td>
+<td style="font-weight:600;">{{ r[1] }}</td>
+<td>{{ r[2] }}</td>
+<td>{{ r[3] }} (Sem {{ r[4] }})</td>
+<td>{{ r[5] }}</td>
+<td>{{ r[6] }}</td>
+<td>{{ r[7] }} - {{ r[8] }}</td>
+<td><span class="badge-present">{{ r[9] }}</span></td>
+<td>{{ r[10] }}</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+{% else %}
+<p style="text-align:center; padding:20px; color:#666; background:#F9FAFB; border-radius:8px;">No attendance records found for your classes.</p>
+{% endif %}
+
+</div>
+
+</div>
+
+</body>
+
+</html>

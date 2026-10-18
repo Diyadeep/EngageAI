@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Teacher Registration | EngageAI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#FDF6E3;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding: 20px 0;
+}
+
+.container{
+width:450px;
+background:white;
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+h2{
+text-align:center;
+color:#1E1B4B;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:12px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+box-sizing: border-box;
+}
+
+.password-group {
+position: relative;
+width: 100%;
+}
+
+.password-group input {
+padding-right: 42px;
+}
+
+.toggle-password {
+position: absolute;
+right: 12px;
+top: 50%;
+transform: translateY(-50%);
+cursor: pointer;
+user-select: none;
+display: flex;
+align-items: center;
+justify-content: center;
+color: #666;
+}
+
+.toggle-password:hover {
+color: #1E1B4B;
+}
+
+.alert {
+background-color: #f8d7da;
+color: #721c24;
+padding: 12px;
+border-radius: 8px;
+margin-bottom: 15px;
+border: 1px solid #f5c6cb;
+font-size: 14px;
+text-align: center;
+}
+
+.error-text {
+color: #d9534f;
+font-size: 13px;
+margin-top: -6px;
+margin-bottom: 8px;
+display: none;
+text-align: left;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#1E1B4B;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+margin-top: 10px;
+}
+
+button:hover{
+background:#312E81;
+}
+
+.links{
+text-align:center;
+margin-top:20px;
+}
+
+.links a{
+text-decoration:none;
+color:#1E1B4B;
+font-weight:600;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Teacher Registration</h2>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert">
+      {% for message in messages %}
+        <p style="margin: 0;">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<form id="teacherRegisterForm" action="/teacher-register" method="POST" autocomplete="off" onsubmit="return validateTeacherRegisterForm()">
+
+<input type="text" id="name" name="name" placeholder="Full Name" autocomplete="off" required pattern="^[a-zA-Z\s]+$">
+<div id="nameError" class="error-text">Name must contain only alphabets and spaces.</div>
+
+<input type="text" id="department" name="department" placeholder="Department" autocomplete="off" required pattern="^[a-zA-Z\s]+$">
+<div id="departmentError" class="error-text">Department must contain only alphabets and spaces.</div>
+
+<input type="email" id="email" name="email" placeholder="example@gmail.com" autocomplete="off" value="" required>
+<div id="emailError" class="error-text">Please enter a valid Gmail address (example@gmail.com).</div>
+
+<input type="tel" id="phone" name="phone" placeholder="Phone Number (10 digits)" autocomplete="off" required maxlength="10" pattern="^[0-9]{10}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+<div id="phoneError" class="error-text">Phone number must contain exactly 10 digits.</div>
+
+<div class="password-group">
+<input type="password" id="password" name="password" placeholder="Password" autocomplete="new-password" value="" required minlength="6">
+<span class="toggle-password" onclick="togglePasswordVisibility('password', this)" title="Toggle Password Visibility">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+</span>
+</div>
+<div id="passwordError" class="error-text">Password must be at least 6 characters long.</div>
+
+<button type="submit">Register</button>
+
+</form>
+
+<div class="links">
+
+<p>Already have an account? <a href="/login">Login Here</a></p>
+
+</div>
+
+</div>
+
+<script>
+const eyeOpenSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+const eyeClosedSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+
+function togglePasswordVisibility(inputId, iconContainer) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+        iconContainer.innerHTML = eyeClosedSVG;
+    } else {
+        input.type = "password";
+        iconContainer.innerHTML = eyeOpenSVG;
+    }
+}
+
+const gmailPattern = /^[A-Za-z0-9._%+-]+@gmail\.com$/;
+let emailTouched = false;
+
+// Ensure email and password fields start empty whenever the registration page is opened or restored from cache
+function resetRegisterFormFields() {
+    const emailField = document.getElementById("email");
+    const passwordField = document.getElementById("password");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+
+    if (emailField && !emailField.matches(':focus')) {
+        emailField.value = "";
+        if (emailError) {
+            emailError.style.display = "none";
+            emailError.innerHTML = "";
+        }
+        emailField.style.borderColor = "#ccc";
+        emailTouched = false;
+    }
+    if (passwordField && !passwordField.matches(':focus')) {
+        passwordField.value = "";
+        if (passwordError) {
+            passwordError.style.display = "none";
+        }
+        passwordField.style.borderColor = "#ccc";
+    }
+}
+
+function scheduleFieldClearing() {
+    resetRegisterFormFields();
+    setTimeout(resetRegisterFormFields, 50);
+    setTimeout(resetRegisterFormFields, 150);
+    setTimeout(resetRegisterFormFields, 300);
+}
+
+window.addEventListener("pageshow", scheduleFieldClearing);
+document.addEventListener("DOMContentLoaded", scheduleFieldClearing);
+window.addEventListener("load", scheduleFieldClearing);
+
+function validateEmailField(isSubmit = false) {
+    const emailInput = document.getElementById("email");
+    const emailError = document.getElementById("emailError");
+    if (!emailInput || !emailError) return true;
+
+    const val = emailInput.value.trim().toLowerCase();
+
+    if (!isSubmit && !emailTouched && val.length === 0) {
+        emailError.style.display = "none";
+        emailError.innerHTML = "";
+        emailInput.style.borderColor = "#ccc";
+        return true;
+    }
+
+    if (!val || !gmailPattern.test(val)) {
+        const parts = val.split("@");
+        if (parts.length === 2 && parts[0].length > 0 && parts[1].includes(".") && !parts[1].endsWith(".")) {
+            const domain = parts[1];
+            if (domain !== "gmail.com") {
+                emailError.innerHTML = "❌ Please use a Gmail address ending with @gmail.com.";
+            } else {
+                emailError.innerHTML = "❌ Please enter a valid Gmail address (example@gmail.com).";
+            }
+        } else {
+            emailError.innerHTML = "❌ Please enter a valid Gmail address (example@gmail.com).";
+        }
+        emailError.style.color = "#d9534f";
+        emailError.style.display = "block";
+        emailInput.style.borderColor = "#d9534f";
+        return false;
+    } else {
+        emailError.innerHTML = "✅ Valid email";
+        emailError.style.color = "#10b981";
+        emailError.style.display = "block";
+        emailInput.style.borderColor = "#10b981";
+        return true;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const emailInput = document.getElementById("email");
+    if (emailInput) {
+        emailInput.addEventListener("blur", function() {
+            emailTouched = true;
+            validateEmailField(false);
+        });
+
+        emailInput.addEventListener("input", function() {
+            if (emailTouched || this.value.trim().length > 0) {
+                validateEmailField(false);
+            }
+        });
+
+        emailInput.addEventListener("change", function() {
+            emailTouched = true;
+            validateEmailField(false);
+        });
+    }
+});
+
+function validateTeacherRegisterForm() {
+    let isValid = true;
+    const alphaSpacePattern = /^[a-zA-Z\s]+$/;
+
+    // Name
+    const name = document.getElementById("name");
+    const nameError = document.getElementById("nameError");
+    if (!name.value.trim() || !alphaSpacePattern.test(name.value.trim())) {
+        nameError.style.display = "block";
+        isValid = false;
+    } else {
+        nameError.style.display = "none";
+    }
+
+    // Department
+    const department = document.getElementById("department");
+    const departmentError = document.getElementById("departmentError");
+    if (!department.value.trim() || !alphaSpacePattern.test(department.value.trim())) {
+        departmentError.style.display = "block";
+        isValid = false;
+    } else {
+        departmentError.style.display = "none";
+    }
+
+    // Email
+    emailTouched = true;
+    if (!validateEmailField(true)) {
+        isValid = false;
+    }
+
+    // Phone
+    const phone = document.getElementById("phone");
+    const phoneError = document.getElementById("phoneError");
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phone.value.trim() || !phonePattern.test(phone.value.trim())) {
+        phoneError.style.display = "block";
+        isValid = false;
+    } else {
+        phoneError.style.display = "none";
+    }
+
+    // Password
+    const password = document.getElementById("password");
+    const passwordError = document.getElementById("passwordError");
+    if (!password.value || password.value.length < 6) {
+        passwordError.style.display = "block";
+        isValid = false;
+    } else {
+        passwordError.style.display = "none";
+    }
+
+    return isValid;
+}
+</script>
+
+</body>
+</html>

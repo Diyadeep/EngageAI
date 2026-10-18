@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Generate Student Reports - EngageAI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#FDF6E3;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100%;
+background:#1E1B4B;
+color:white;
+padding:30px 20px;
+}
+
+.sidebar h2{
+margin-bottom:40px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+margin:20px 0;
+}
+
+.sidebar ul li a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.sidebar ul li a.active{
+font-weight:700;
+color:#10B981;
+}
+
+.main{
+margin-left:260px;
+padding:30px;
+}
+
+.flash-messages{
+margin-bottom:20px;
+}
+
+.flash-msg{
+background:#1E1B4B;
+color:white;
+padding:12px 20px;
+border-radius:8px;
+margin-bottom:10px;
+font-size:14px;
+}
+
+.card-box{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+margin-bottom:30px;
+}
+
+.card-box h2{
+color:#1E1B4B;
+margin-bottom:15px;
+}
+
+.filter-form{
+display:flex;
+gap:15px;
+align-items:center;
+margin-bottom:20px;
+}
+
+.filter-form select{
+padding:10px 15px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:15px;
+outline:none;
+min-width:250px;
+}
+
+.btn{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+font-size:14px;
+transition:0.2s ease;
+}
+
+.btn-primary{ background:#1E1B4B; color:white; }
+.btn-success{ background:#10B981; color:white; }
+
+table{
+width:100%;
+border-collapse:collapse;
+text-align:center;
+}
+
+table th{
+background:#1E1B4B;
+color:white;
+padding:14px;
+}
+
+table td{
+padding:14px;
+border-bottom:1px solid #ddd;
+}
+
+.badge{
+padding:5px 12px;
+border-radius:20px;
+font-size:13px;
+font-weight:600;
+display:inline-block;
+}
+
+.badge-present{ background:#D1FAE5; color:#065F46; }
+.badge-absent{ background:#FEE2E2; color:#991B1B; }
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+justify-content:center;
+align-items:center;
+z-index:999;
+}
+
+.modal-content{
+background:white;
+padding:30px;
+border-radius:15px;
+width:90%;
+max-width:550px;
+box-shadow:0 5px 20px rgba(0,0,0,.3);
+}
+
+.modal-content h3{
+color:#1E1B4B;
+margin-bottom:15px;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+gap:6px;
+margin-bottom:15px;
+}
+
+.form-group label{
+font-size:14px;
+font-weight:600;
+color:#333;
+}
+
+.form-group input, .form-group textarea{
+padding:10px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:14px;
+outline:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>EngageAI</h2>
+
+<ul>
+
+<li><a href="/teacher-dashboard">Dashboard</a></li>
+
+<li><a href="/teacher/profile">My Profile</a></li>
+
+<li><a href="/teacher/classes">Classes</a></li>
+
+<li><a href="/teacher/attendance">Attendance</a></li>
+
+<li><a href="/teacher/reports" class="active">Reports</a></li>
+
+<li><a href="/logout">Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>Student Performance Reports</h1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="flash-msg">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!-- Class Selector -->
+<div class="card-box" style="margin-top: 20px;">
+<h2>Select Class Session</h2>
+
+<form method="GET" action="/teacher/reports" class="filter-form">
+<select name="class_id" onchange="this.form.submit()">
+<option value="" disabled {% if not selected_class_id %}selected{% endif %}>-- Select Class Session --</option>
+{% for c in classes %}
+<option value="{{ c.id }}" {% if selected_class_id == c.id %}selected{% endif %}>
+{{ c.subject }} - {{ c.course }} (Sem {{ c.semester }}) | {{ c.class_date_str }}
+</option>
+{% endfor %}
+</select>
+</form>
+
+{% if selected_class %}
+<p style="color:#666; font-size:15px;">Showing students for <strong>{{ selected_class.subject }}</strong> ({{ selected_class.course }} - Semester {{ selected_class.semester }} | Date: {{ selected_class.class_date_str }})</p>
+{% endif %}
+
+</div>
+
+<!-- Student List & Metrics for Report Generation -->
+{% if selected_class_id %}
+
+<div class="card-box">
+<h2>Student Class Performance & Report Generation</h2>
+
+{% if students_data %}
+<table>
+
+<thead>
+<tr>
+<th>Roll No</th>
+<th>Student Name</th>
+<th>Attendance</th>
+<th>Real Engagement</th>
+<th>Attention Level</th>
+<th>Phone Status</th>
+<th>Report Status</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+{% for s in students_data %}
+<tr>
+<td>{{ s.roll_no }}</td>
+<td style="font-weight:600;">{{ s.name }}</td>
+<td>
+{% if s.attended %}
+<span class="badge badge-present">PRESENT</span>
+{% else %}
+<span class="badge badge-absent">ABSENT</span>
+{% endif %}
+</td>
+<td><strong>{{ s.avg_engagement }}%</strong></td>
+<td>{{ s.attention_level }}</td>
+<td>{{ s.phone_info }}</td>
+<td>
+{% if s.has_report %}
+<span class="badge" style="background:#E0E7FF; color:#3730A3;">Report Generated</span>
+{% else %}
+<span class="badge" style="background:#F3F4F6; color:#4B5563;">Pending</span>
+{% endif %}
+</td>
+<td>
+<button type="button" class="btn btn-success" onclick="openReportModal('{{ s.id }}', '{{ s.name|escape }}', '{{ selected_class_id }}', '{{ selected_class.subject|escape }}', '{{ s.avg_engagement }}', '{{ s.attention_level|escape }}')">
+{% if s.has_report %}Update Report{% else %}Generate Report{% endif %}
+</button>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+{% else %}
+<p style="text-align:center; padding:20px; color:#666; background:#F9FAFB; border-radius:8px;">No students enrolled or recorded for this class session.</p>
+{% endif %}
+
+</div>
+
+{% endif %}
+
+<!-- Existing Generated Reports List -->
+<div class="card-box">
+<h2>Generated Student Reports</h2>
+
+{% if generated_reports %}
+<table>
+
+<thead>
+<tr>
+<th>ID</th>
+<th>Student Name</th>
+<th>Roll No</th>
+<th>Class Subject</th>
+<th>Report Title</th>
+<th>Attendance %</th>
+<th>Engagement %</th>
+<th>Overall Status</th>
+<th>Generated Date</th>
+</tr>
+</thead>
+
+<tbody>
+{% for r in generated_reports %}
+<tr>
+<td>{{ r.id }}</td>
+<td style="font-weight:600;">{{ r.student_name }}</td>
+<td>{{ r.roll_no }}</td>
+<td>{{ r.subject }}</td>
+<td>{{ r.report_title }}</td>
+<td>{{ r.attendance_percentage }}%</td>
+<td><strong>{{ r.avg_engagement }}%</strong></td>
+<td><span class="badge badge-present">{{ r.overall_status }}</span></td>
+<td>{{ r.created_at_str }}</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+{% else %}
+<p style="text-align:center; padding:20px; color:#666; background:#F9FAFB; border-radius:8px;">No reports generated yet. Select a class session above to generate reports.</p>
+{% endif %}
+
+</div>
+
+</div>
+
+<!-- Modal Form for Report Generation -->
+<div id="reportModal" class="modal">
+<div class="modal-content">
+<h3 id="modalTitle">Generate Student Report</h3>
+
+<form action="/teacher/generate-report" method="POST">
+<input type="hidden" id="modal_student_id" name="student_id">
+<input type="hidden" id="modal_class_id" name="class_id">
+
+<div class="form-group">
+<label>Student Name</label>
+<input type="text" id="modal_student_name" readonly style="background:#F3F4F6;">
+</div>
+
+<div class="form-group">
+<label for="report_title">Report Title</label>
+<input type="text" id="report_title" name="report_title" placeholder="e.g. Mid-Term Engagement & Performance Report" required>
+</div>
+
+<div class="form-group">
+<label for="summary">Teacher Remarks & Evaluation</label>
+<textarea id="summary" name="summary" rows="4" placeholder="Enter evaluation notes, observations, and recommendations..." required></textarea>
+</div>
+
+<div style="display:flex; justify-content:flex-end; gap:10px; margin-top:20px;">
+<button type="button" class="btn" style="background:#6B7280; color:white;" onclick="closeReportModal()">Cancel</button>
+<button type="submit" class="btn btn-primary">Save & Issue Report</button>
+</div>
+</form>
+</div>
+</div>
+
+<script>
+function openReportModal(studentId, studentName, classId, subject, avgEng, attLevel) {
+    document.getElementById("modal_student_id").value = studentId;
+    document.getElementById("modal_class_id").value = classId;
+    document.getElementById("modal_student_name").value = studentName;
+    document.getElementById("report_title").value = "Engagement & Performance Report - " + subject;
+    document.getElementById("summary").value = "Student demonstrated " + attLevel + " behavior with an average engagement score of " + avgEng + "%. Overall class participation is satisfactory.";
+    document.getElementById("reportModal").style.display = "flex";
+}
+
+function closeReportModal() {
+    document.getElementById("reportModal").style.display = "none";
+}
+</script>
+
+</body>
+
+</html>

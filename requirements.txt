@@ -1,0 +1,8 @@
+Flask
+Flask-MySQLdb
+Flask-SQLAlchemy
+mysqlclient
+mysql-connector-python
+opencv-python
+numpy
+ultralytics

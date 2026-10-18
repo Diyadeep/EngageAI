@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EngageAI - Student Reports</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+body{
+background:#FDF6E3;
+}
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100vh;
+background:#1E1B4B;
+color:white;
+}
+.logo{
+padding:25px;
+font-size:30px;
+font-weight:bold;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,.2);
+}
+.sidebar ul{
+list-style:none;
+}
+.sidebar ul li{
+padding:18px 25px;
+}
+.sidebar ul li:hover{
+background:#312E81;
+}
+.sidebar ul li a{
+text-decoration:none;
+color:white;
+display:block;
+}
+.main{
+margin-left:250px;
+padding:30px;
+}
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+.header h1{
+color:#1E1B4B;
+}
+.logout{
+background:#DC2626;
+color:white;
+padding:10px 20px;
+text-decoration:none;
+border-radius:8px;
+}
+.section{
+margin-top:20px;
+}
+.section h2{
+color:#1E1B4B;
+margin-bottom:20px;
+}
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+table th{
+background:#1E1B4B;
+color:white;
+padding:15px;
+}
+table td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid #eee;
+}
+.footer{
+margin-top:40px;
+text-align:center;
+color:#555;
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+<div class="logo">EngageAI</div>
+<ul>
+<li><a href="/admin-dashboard">🏠 Dashboard</a></li>
+<li><a href="/admin/students">🎓 Students</a></li>
+<li><a href="/admin/teachers">👨‍🏫 Teachers</a></li>
+<li><a href="/admin/analytics">📊 Analytics</a></li>
+<li style="background:#312E81;"><a href="/admin/reports">📄 Reports</a></li>
+<li><a href="/admin/settings">⚙ Settings</a></li>
+<li><a href="/logout">🚪 Logout</a></li>
+</ul>
+</div>
+
+<div class="main">
+<div class="header">
+<h1>Admin Reports</h1>
+<a href="/logout" class="logout">Logout</a>
+</div>
+
+<div class="section">
+<h2>Generated Student Reports</h2>
+<table>
+<tr>
+<th>ID</th>
+<th>Student Name</th>
+<th>Roll Number</th>
+<th>Subject</th>
+<th>Attendance %</th>
+<th>Engagement %</th>
+<th>Attention Level</th>
+<th>Status</th>
+<th>Teacher Remarks/Evaluation</th>
+<th>Report Generated Date & Time</th>
+<th>Teacher Name</th>
+</tr>
+{% if reports %}
+{% for report in reports %}
+<tr>
+<td>{{ report.id if report.id is defined else report[0] }}</td>
+<td style="font-weight:600;">{{ report.student_name if report.student_name is defined else report[1] }}</td>
+<td>{{ report.roll_no if report.roll_no is defined else report[2] }}</td>
+<td>{{ report.subject if report.subject is defined else report[3] }}</td>
+<td>{{ report.attendance_percentage if report.attendance_percentage is defined else report[4] }}%</td>
+<td><strong>{{ report.avg_engagement if report.avg_engagement is defined else report[5] }}%</strong></td>
+<td>{{ report.attention_level if report.attention_level is defined else report[6] }}</td>
+<td><span class="badge" style="background:#D1FAE5; color:#065F46; padding:4px 10px; border-radius:12px; font-weight:600; font-size:13px;">{{ report.overall_status if report.overall_status is defined else report[7] }}</span></td>
+<td style="max-width:280px; text-align:left; word-wrap:break-word; font-size:14px; color:#374151;">{{ report.summary if report.summary is defined else report[8] }}</td>
+<td>{{ report.created_at_str if report.created_at_str is defined else report[9] }}</td>
+<td>{{ report.teacher_name if report.teacher_name is defined else report[10] }}</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr>
+<td colspan="11" style="padding: 20px; text-align: center; color: #666;">No teacher-generated reports available in database yet.</td>
+</tr>
+{% endif %}
+</table>
+</div>
+
+<div class="footer">
+<h3>© 2026 EngageAI | AI Based Student Engagement Analysis System</h3>
+</div>
+</div>
+
+</body>
+</html>

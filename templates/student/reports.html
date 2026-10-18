@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Student Reports | EngageAI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#FDF6E3;
+min-height:100vh;
+color:#1E1B4B;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:240px;
+height:100vh;
+background:#1E1B4B;
+color:white;
+padding:30px;
+z-index:100;
+}
+
+.sidebar h2{
+margin-bottom:40px;
+font-weight:700;
+letter-spacing:0.5px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+margin:18px 0;
+}
+
+.sidebar ul li a{
+color:rgba(255,255,255,0.8);
+text-decoration:none;
+font-size:16px;
+display:flex;
+align-items:center;
+gap:10px;
+transition:all 0.2s ease;
+}
+
+.sidebar ul li a:hover, .sidebar ul li a.active{
+font-weight:700;
+color:#10B981;
+}
+
+.main{
+margin-left:260px;
+padding:35px;
+max-width:1200px;
+}
+
+.main h1{
+color:#1E1B4B;
+margin-bottom:25px;
+font-size:28px;
+font-weight:700;
+}
+
+/* Filter Box */
+.filter-box{
+background:white;
+padding:28px 32px;
+border-radius:16px;
+box-shadow:0 10px 25px -5px rgba(30, 27, 75, 0.06);
+margin-bottom:30px;
+border:1px solid rgba(30,27,75,0.05);
+}
+
+.filter-box h3{
+color:#1E1B4B;
+font-size:18px;
+margin-bottom:18px;
+font-weight:600;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.filter-row{
+display:flex;
+gap:24px;
+align-items:center;
+flex-wrap:wrap;
+}
+
+.search-group, .select-group{
+flex:1;
+min-width:260px;
+}
+
+.filter-row label{
+display:block;
+font-size:13px;
+font-weight:600;
+color:#4B5563;
+margin-bottom:8px;
+text-transform:uppercase;
+letter-spacing:0.5px;
+}
+
+.input-control{
+width:100%;
+padding:12px 16px;
+border:1px solid #D1D5DB;
+border-radius:10px;
+font-size:15px;
+color:#1F2937;
+outline:none;
+transition:all 0.2s ease;
+background:white;
+}
+
+.input-control:focus{
+border-color:#1E1B4B;
+box-shadow:0 0 0 3px rgba(30,27,75,0.12);
+}
+
+.subject-pills-container{
+margin-top:20px;
+padding-top:16px;
+border-top:1px dashed #E5E7EB;
+}
+
+.subject-pills-label{
+font-size:12px;
+font-weight:600;
+color:#6B7280;
+margin-bottom:10px;
+text-transform:uppercase;
+letter-spacing:0.5px;
+}
+
+.subject-pills{
+display:flex;
+gap:10px;
+flex-wrap:wrap;
+}
+
+.pill{
+background:#EEF2FF;
+color:#312E81;
+padding:8px 18px;
+border-radius:24px;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+border:1px solid #C7D2FE;
+transition:all 0.2s ease;
+outline:none;
+display:inline-flex;
+align-items:center;
+gap:6px;
+}
+
+.pill:hover{
+background:#1E1B4B;
+color:white;
+border-color:#1E1B4B;
+transform:translateY(-1px);
+}
+
+.pill.active{
+background:#1E1B4B;
+color:white;
+border-color:#1E1B4B;
+box-shadow:0 4px 10px rgba(30,27,75,0.2);
+}
+
+/* Reports Container */
+.reports-container{
+background:transparent;
+}
+
+.report-card{
+background:white;
+border-radius:16px;
+padding:30px;
+margin-bottom:30px;
+box-shadow:0 10px 25px -5px rgba(30, 27, 75, 0.06);
+border:1px solid rgba(30,27,75,0.06);
+transition:all 0.2s ease;
+}
+
+.report-card:hover{
+box-shadow:0 12px 30px -5px rgba(30, 27, 75, 0.1);
+}
+
+.report-header{
+display:flex;
+justify-content:space-between;
+align-items:flex-start;
+border-bottom:1px solid #F3F4F6;
+padding-bottom:20px;
+margin-bottom:20px;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.report-badge{
+display:inline-block;
+background:#EEF2FF;
+color:#4F46E5;
+padding:4px 12px;
+border-radius:12px;
+font-size:12px;
+font-weight:600;
+margin-bottom:8px;
+text-transform:uppercase;
+letter-spacing:0.5px;
+}
+
+.subject-name{
+color:#1E1B4B;
+font-size:22px;
+font-weight:700;
+margin-bottom:6px;
+}
+
+.teacher-info, .student-info{
+color:#4B5563;
+font-size:14px;
+margin-top:4px;
+line-height:1.5;
+}
+
+.report-date-badge{
+background:#1E1B4B;
+color:white;
+padding:8px 16px;
+border-radius:20px;
+font-size:13px;
+font-weight:600;
+box-shadow:0 4px 10px rgba(30,27,75,0.15);
+white-space:nowrap;
+}
+
+/* Metrics Grid */
+.metrics-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+gap:16px;
+margin:24px 0;
+}
+
+.metric-card{
+background:#F8FAFC;
+padding:18px;
+border-radius:12px;
+border:1px solid #E2E8F0;
+text-align:center;
+transition:all 0.2s ease;
+}
+
+.metric-card:hover{
+background:white;
+border-color:#C7D2FE;
+transform:translateY(-2px);
+box-shadow:0 6px 15px rgba(0,0,0,0.04);
+}
+
+.metric-card h4{
+font-size:12px;
+color:#6B7280;
+text-transform:uppercase;
+letter-spacing:0.5px;
+margin-bottom:8px;
+font-weight:600;
+}
+
+.metric-val{
+font-size:20px;
+font-weight:700;
+}
+
+.text-green{ color:#059669; }
+.text-indigo{ color:#1E1B4B; }
+.text-dark{ color:#1F2937; }
+.text-amber{ color:#D97706; }
+
+.report-summary-box{
+background:#F8FAFC;
+padding:22px;
+border-radius:12px;
+border:1px solid #E2E8F0;
+margin-top:20px;
+}
+
+.report-summary-box h4{
+font-size:15px;
+color:#1E1B4B;
+margin-bottom:10px;
+font-weight:700;
+display:flex;
+align-items:center;
+gap:8px;
+}
+
+.report-summary-box p{
+font-size:14px;
+color:#374151;
+line-height:1.7;
+}
+
+/* Prompt Box */
+.prompt-box{
+text-align:center;
+padding:60px 30px;
+background:white;
+border-radius:16px;
+border:2px dashed #CBD5E1;
+box-shadow:0 10px 25px -5px rgba(30, 27, 75, 0.04);
+}
+
+.prompt-icon{
+font-size:42px;
+margin-bottom:15px;
+}
+
+.prompt-box h3{
+color:#1E1B4B;
+font-size:20px;
+margin-bottom:10px;
+font-weight:700;
+}
+
+.prompt-box p{
+color:#64748B;
+font-size:15px;
+max-width:500px;
+margin:0 auto;
+line-height:1.6;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>EngageAI</h2>
+
+<ul>
+
+<li><a href="/student-dashboard">🏠 Dashboard</a></li>
+
+<li><a href="/student/profile">👤 My Profile</a></li>
+
+<li><a href="/student/engagement">📊 Engagement</a></li>
+
+<li><a href="/student/attendance">📅 Attendance</a></li>
+
+<li><a href="/student/reports" class="active">📄 Reports</a></li>
+
+<li><a href="/logout">🚪 Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>Student Reports</h1>
+
+<div class="filter-box">
+<h3>Search Your Subject Report</h3>
+<div class="filter-row">
+<div class="search-group">
+<label for="subjectSearch">Search Subject</label>
+<input type="text" id="subjectSearch" class="input-control" placeholder="🔍 Search subject..." value="{{ selected_subject }}" oninput="onSearchInput(this.value)">
+</div>
+<div class="select-group">
+<label for="subjectSelect">Select Subject</label>
+<select id="subjectSelect" class="input-control" onchange="onSubjectSelected(this.value)">
+<option value="">Select Subject ▼</option>
+{% for subj in subjects %}
+<option value="{{ subj }}" {% if selected_subject and selected_subject.lower() == subj.lower() %}selected{% endif %}>{{ subj }}</option>
+{% endfor %}
+</select>
+</div>
+</div>
+
+{% if subjects %}
+<div class="subject-pills-container">
+<div class="subject-pills-label">Available Subjects with Reports:</div>
+<div class="subject-pills" id="subjectPills">
+{% for subj in subjects %}
+<button type="button" class="pill {% if selected_subject and selected_subject.lower() == subj.lower() %}active{% endif %}" data-subj="{{ subj }}" onclick="onSubjectSelected('{{ subj }}')">
+📚 {{ subj }}
+</button>
+{% endfor %}
+</div>
+</div>
+{% endif %}
+</div>
+
+<div class="reports-container">
+
+{% if not selected_subject %}
+<div class="prompt-box">
+<div class="prompt-icon">🔍</div>
+<h3>Search or select a subject to view your report.</h3>
+<p>Please select a subject from the search box or dropdown above to view your performance report.</p>
+</div>
+
+{% elif reports %}
+
+{% for r in reports %}
+<div class="report-card">
+<div class="report-header">
+<div class="report-title-section">
+<span class="report-badge">Engagement & Performance Report</span>
+<h2 class="subject-name">Subject: {{ r.subject }}</h2>
+<p class="teacher-info"><strong>Teacher:</strong> {{ r.teacher_name }} | <strong>Class Date:</strong> {{ r.class_date_str }} ({{ r.start_time_str }} - {{ r.end_time_str }})</p>
+<p class="student-info"><strong>Student:</strong> {{ r.student_name }} (Roll No: {{ r.roll_no }}) | <strong>Course:</strong> {{ r.course }} (Sem {{ r.semester }})</p>
+</div>
+<div class="report-date-badge">
+Generated: {{ r.created_at_str }}
+</div>
+</div>
+
+<div class="metrics-grid">
+<div class="metric-card">
+<h4>Attendance</h4>
+<p class="metric-val text-green">{{ r.attendance_percentage }}%</p>
+</div>
+
+<div class="metric-card">
+<h4>Engagement</h4>
+<p class="metric-val text-indigo">{{ r.avg_engagement }}%</p>
+</div>
+
+<div class="metric-card">
+<h4>Attention</h4>
+<p class="metric-val text-dark">{{ r.attention_level or 'Attentive' }}</p>
+</div>
+
+<div class="metric-card">
+<h4>Phone Status</h4>
+<p class="metric-val {% if 'Detected' in r.phone_info and 'No' not in r.phone_info %}text-amber{% else %}text-green{% endif %}">
+{{ r.phone_info or 'No Phone Detected' }}
+</p>
+</div>
+
+<div class="metric-card">
+<h4>Overall Status</h4>
+<p class="metric-val text-indigo">{{ r.overall_status or 'Good Performance' }}</p>
+</div>
+</div>
+
+<div class="report-summary-box">
+<h4>Teacher Remarks & Evaluation</h4>
+<p>{{ r.summary }}</p>
+</div>
+</div>
+{% endfor %}
+
+{% else %}
+<div class="prompt-box">
+<div class="prompt-icon">📋</div>
+<h3 style="color:#1E1B4B;">No report available for this subject yet.</h3>
+<p>There are no generated reports found for "{{ selected_subject }}".</p>
+</div>
+{% endif %}
+
+</div>
+
+</div>
+
+<script>
+function onSubjectSelected(val) {
+    if (val && val.trim()) {
+        window.location.href = "/student/reports?subject=" + encodeURIComponent(val.trim());
+    } else {
+        window.location.href = "/student/reports";
+    }
+}
+
+function onSearchInput(query) {
+    const q = query.trim().toLowerCase();
+    const select = document.getElementById("subjectSelect");
+    const pills = document.querySelectorAll("#subjectPills .pill");
+    
+    // Filter dropdown options dynamically
+    for (let i = 0; i < select.options.length; i++) {
+        const opt = select.options[i];
+        if (opt.value === "") continue;
+        if (opt.value.toLowerCase().includes(q)) {
+            opt.style.display = "";
+        } else {
+            opt.style.display = "none";
+        }
+    }
+
+    // Filter subject pills dynamically
+    pills.forEach(pill => {
+        const subj = pill.getAttribute("data-subj").toLowerCase();
+        if (subj.includes(q)) {
+            pill.style.display = "inline-flex";
+        } else {
+            pill.style.display = "none";
+        }
+    });
+}
+
+// Handle Enter key inside the search input box
+document.getElementById("subjectSearch").addEventListener("keydown", function(e) {
+    if (e.key === "Enter") {
+        e.preventDefault();
+        const q = this.value.trim().toLowerCase();
+        if (!q) {
+            window.location.href = "/student/reports";
+            return;
+        }
+
+        // Check if there is an exact or partial match among available subject pills/options
+        const pills = document.querySelectorAll("#subjectPills .pill");
+        let matchedSubj = null;
+        for (let pill of pills) {
+            const subj = pill.getAttribute("data-subj");
+            if (subj.toLowerCase() === q) {
+                matchedSubj = subj;
+                break;
+            } else if (subj.toLowerCase().includes(q) && !matchedSubj) {
+                matchedSubj = subj;
+            }
+        }
+
+        if (matchedSubj) {
+            onSubjectSelected(matchedSubj);
+        } else {
+            onSubjectSelected(this.value.trim());
+        }
+    }
+});
+</script>
+
+</body>
+
+</html>

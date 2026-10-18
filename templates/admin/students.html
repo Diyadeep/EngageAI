@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EngageAI - Student Management</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+body{
+background:#FDF6E3;
+}
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100vh;
+background:#1E1B4B;
+color:white;
+}
+.logo{
+padding:25px;
+font-size:30px;
+font-weight:bold;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,.2);
+}
+.sidebar ul{
+list-style:none;
+}
+.sidebar ul li{
+padding:18px 25px;
+}
+.sidebar ul li:hover{
+background:#312E81;
+}
+.sidebar ul li a{
+text-decoration:none;
+color:white;
+display:block;
+}
+.main{
+margin-left:250px;
+padding:30px;
+}
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+.header h1{
+color:#1E1B4B;
+}
+.logout{
+background:#DC2626;
+color:white;
+padding:10px 20px;
+text-decoration:none;
+border-radius:8px;
+}
+.alert {
+background-color: #d1e7dd;
+color: #0f5132;
+padding: 12px;
+border-radius: 8px;
+margin-bottom: 20px;
+border: 1px solid #badbcc;
+font-size: 14px;
+text-align: center;
+}
+.section{
+margin-top:20px;
+}
+.section h2{
+color:#1E1B4B;
+margin-bottom:20px;
+}
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+}
+table th{
+background:#1E1B4B;
+color:white;
+padding:15px;
+}
+table td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid #eee;
+}
+.btn{
+padding:6px 12px;
+border:none;
+border-radius:6px;
+cursor:pointer;
+color:white;
+font-size:13px;
+font-weight:600;
+margin:2px;
+}
+.btn-edit{
+background:#2563EB;
+}
+.btn-edit:hover{
+background:#1d4ed8;
+}
+.btn-delete{
+background:#DC2626;
+}
+.btn-delete:hover{
+background:#b91c1c;
+}
+/* Modal Styles */
+.modal{
+display:none;
+position:fixed;
+z-index:1000;
+left:0;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+align-items:center;
+justify-content:center;
+}
+.modal-content{
+background:white;
+padding:30px;
+border-radius:12px;
+width:450px;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+.modal-content h3{
+margin-bottom:20px;
+color:#1E1B4B;
+}
+.form-group{
+margin-bottom:15px;
+text-align:left;
+}
+.form-group label{
+display:block;
+margin-bottom:5px;
+font-size:13px;
+font-weight:600;
+color:#333;
+}
+.form-group input{
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:14px;
+box-sizing:border-box;
+}
+.modal-actions{
+display:flex;
+justify-content:flex-end;
+gap:10px;
+margin-top:20px;
+}
+.btn-cancel{
+background:#6B7280;
+}
+.footer{
+margin-top:40px;
+text-align:center;
+color:#555;
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+<div class="logo">EngageAI</div>
+<ul>
+<li><a href="/admin-dashboard">🏠 Dashboard</a></li>
+<li style="background:#312E81;"><a href="/admin/students">🎓 Students</a></li>
+<li><a href="/admin/teachers">👨‍🏫 Teachers</a></li>
+<li><a href="/admin/analytics">📊 Analytics</a></li>
+<li><a href="/admin/reports">📄 Reports</a></li>
+<li><a href="/admin/settings">⚙ Settings</a></li>
+<li><a href="/logout">🚪 Logout</a></li>
+</ul>
+</div>
+
+<div class="main">
+<div class="header">
+<h1>Student Management</h1>
+<a href="/logout" class="logout">Logout</a>
+</div>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert">
+      {% for message in messages %}
+        <p style="margin: 0;">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<div class="section">
+<h2>Registered Students</h2>
+<table>
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Roll No</th>
+<th>Email</th>
+<th>Phone</th>
+<th>Course</th>
+<th>Semester</th>
+<th>Actions</th>
+</tr>
+{% if students %}
+{% for student in students %}
+<tr>
+<td>{{ student[0] }}</td>
+<td>{{ student[1] }}</td>
+<td>{{ student[2] }}</td>
+<td>{{ student[3] }}</td>
+<td>{{ student[4] }}</td>
+<td>{{ student[5] }}</td>
+<td>{{ student[6] }}</td>
+<td>
+<button class="btn btn-edit" onclick="openEditModal({{ student[0] }}, '{{ student[1] }}', '{{ student[2] }}', '{{ student[3] }}', '{{ student[4] }}', '{{ student[5] }}', '{{ student[6] }}')">Edit</button>
+<form action="/admin/student/delete/{{ student[0] }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete student {{ student[1] }} (Roll No: {{ student[2] }})?');">
+<button type="submit" class="btn btn-delete">Delete</button>
+</form>
+</td>
+</tr>
+{% endfor %}
+{% else %}
+<tr>
+<td colspan="8" style="padding: 20px; text-align: center; color: #666;">No students registered yet.</td>
+</tr>
+{% endif %}
+</table>
+</div>
+
+<div class="footer">
+<h3>© 2026 EngageAI | AI Based Student Engagement Analysis System</h3>
+</div>
+</div>
+
+<!-- Edit Student Modal -->
+<div id="editModal" class="modal">
+<div class="modal-content">
+<h3>Edit Student Details</h3>
+<form id="editForm" action="" method="POST">
+<div class="form-group">
+<label for="edit_name">Full Name</label>
+<input type="text" id="edit_name" name="name" required>
+</div>
+
+<div class="form-group">
+<label for="edit_roll_no">Roll Number</label>
+<input type="text" id="edit_roll_no" name="roll_no" required>
+</div>
+
+<div class="form-group">
+<label for="edit_email">Email Address</label>
+<input type="email" id="edit_email" name="email" required>
+</div>
+
+<div class="form-group">
+<label for="edit_phone">Phone Number</label>
+<input type="text" id="edit_phone" name="phone" required>
+</div>
+
+<div class="form-group">
+<label for="edit_course">Course</label>
+<input type="text" id="edit_course" name="course" required>
+</div>
+
+<div class="form-group">
+<label for="edit_semester">Semester</label>
+<input type="text" id="edit_semester" name="semester" required>
+</div>
+
+<div class="modal-actions">
+<button type="button" class="btn btn-cancel" onclick="closeEditModal()">Cancel</button>
+<button type="submit" class="btn btn-edit">Save Changes</button>
+</div>
+</form>
+</div>
+</div>
+
+<script>
+function openEditModal(id, name, roll_no, email, phone, course, semester) {
+    document.getElementById("editForm").action = "/admin/student/edit/" + id;
+    document.getElementById("edit_name").value = name;
+    document.getElementById("edit_roll_no").value = roll_no;
+    document.getElementById("edit_email").value = email;
+    document.getElementById("edit_phone").value = phone;
+    document.getElementById("edit_course").value = course;
+    document.getElementById("edit_semester").value = semester;
+    document.getElementById("editModal").style.display = "flex";
+}
+
+function closeEditModal() {
+    document.getElementById("editModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>

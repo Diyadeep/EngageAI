@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EngageAI - Admin Settings</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+body{
+background:#FDF6E3;
+}
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100vh;
+background:#1E1B4B;
+color:white;
+}
+.logo{
+padding:25px;
+font-size:30px;
+font-weight:bold;
+text-align:center;
+border-bottom:1px solid rgba(255,255,255,.2);
+}
+.sidebar ul{
+list-style:none;
+}
+.sidebar ul li{
+padding:18px 25px;
+}
+.sidebar ul li:hover{
+background:#312E81;
+}
+.sidebar ul li a{
+text-decoration:none;
+color:white;
+display:block;
+}
+.main{
+margin-left:250px;
+padding:30px;
+}
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:30px;
+}
+.header h1{
+color:#1E1B4B;
+}
+.logout{
+background:#DC2626;
+color:white;
+padding:10px 20px;
+text-decoration:none;
+border-radius:8px;
+}
+.card-box{
+background:white;
+padding:35px;
+border-radius:15px;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+max-width:600px;
+}
+.card-box h2{
+color:#1E1B4B;
+margin-bottom:20px;
+}
+.form-group{
+margin-bottom:20px;
+}
+.form-group label{
+display:block;
+margin-bottom:8px;
+font-weight:600;
+color:#333;
+}
+.form-group input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+box-sizing:border-box;
+}
+.form-group input[readonly]{
+background:#f3f3f3;
+cursor:not-allowed;
+}
+button{
+padding:12px 25px;
+background:#2563EB;
+color:white;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-size:16px;
+font-weight:600;
+}
+button:hover{
+background:#1d4ed8;
+}
+.alert {
+background-color: #d1e7dd;
+color: #0f5132;
+padding: 12px;
+border-radius: 8px;
+margin-bottom: 20px;
+border: 1px solid #badbcc;
+font-size: 14px;
+text-align: center;
+}
+.footer{
+margin-top:40px;
+text-align:center;
+color:#555;
+}
+</style>
+</head>
+<body>
+
+<div class="sidebar">
+<div class="logo">EngageAI</div>
+<ul>
+<li><a href="/admin-dashboard">🏠 Dashboard</a></li>
+<li><a href="/admin/students">🎓 Students</a></li>
+<li><a href="/admin/teachers">👨‍🏫 Teachers</a></li>
+<li><a href="/admin/analytics">📊 Analytics</a></li>
+<li><a href="/admin/reports">📄 Reports</a></li>
+<li style="background:#312E81;"><a href="/admin/settings">⚙ Settings</a></li>
+<li><a href="/logout">🚪 Logout</a></li>
+</ul>
+</div>
+
+<div class="main">
+<div class="header">
+<h1>Admin Settings</h1>
+<a href="/logout" class="logout">Logout</a>
+</div>
+
+<div class="card-box">
+<h2>Account Settings</h2>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert">
+      {% for message in messages %}
+        <p style="margin: 0;">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<form action="/admin/settings" method="POST">
+<div class="form-group">
+<label for="name">Admin Name</label>
+<input type="text" id="name" name="name" value="{{ admin_user[1] if admin_user and admin_user[1] else 'Administrator' }}" required>
+</div>
+
+<div class="form-group">
+<label for="email">Email Address</label>
+<input type="email" id="email" name="email" value="{{ admin_user[2] if admin_user else session.get('admin', '') }}" readonly>
+</div>
+
+<div class="form-group">
+<label for="password">New Password (Leave blank to keep unchanged)</label>
+<input type="password" id="password" name="password" minlength="6" placeholder="Enter new password">
+</div>
+
+<div class="form-group">
+<label for="confirm_password">Confirm New Password</label>
+<input type="password" id="confirm_password" name="confirm_password" minlength="6" placeholder="Confirm new password">
+</div>
+
+<button type="submit">Save Settings</button>
+</form>
+</div>
+
+<div class="footer">
+<h3>© 2026 EngageAI | AI Based Student Engagement Analysis System</h3>
+</div>
+</div>
+
+</body>
+</html>

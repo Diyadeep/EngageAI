@@ -1,0 +1,25 @@
+
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+.env
+*.log
+.vscode/
+.pytest_cache/
+
+# Database files and private data
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files
+scratch/
+*.tmp
+
+# Large AI model files (upload separately if needed)
+*.pt
+
+# Uploaded files
+static/uploads/*
+!static/uploads/.gitkeep

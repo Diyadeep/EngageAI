@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngageAI - AI Powered Online Learning Engagement Analyzer</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- =========================
+            NAVBAR
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            EngageAI
+        </div>
+
+        <ul>
+
+            <li><a href="/">Home</a></li>
+
+            <li><a href="#features">Features</a></li>
+
+            <li><a href="#about">About</a></li>
+
+            <li><a href="#contact">Contact</a></li>
+
+            <li>
+                <a href="/login" class="login-btn">Login</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+    <!-- =========================
+            HERO SECTION
+    ========================== -->
+
+    <section class="hero">
+
+        <div class="left">
+
+            <h1>AI Powered Online Learning Engagement Analyzer</h1>
+
+            <p>
+
+                EngageAI is an Artificial Intelligence based web application that
+                monitors student engagement during online classes using
+                OpenCV, MediaPipe, YOLOv8 and Machine Learning.
+
+            </p>
+
+            <div class="buttons">
+
+                <a href="/login">
+                    <button>Login</button>
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="right">
+
+            <img src="{{ url_for('static', filename='images/education.png') }}" alt="Education">
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+            FEATURES
+    ========================== -->
+
+    <section class="features" id="features">
+
+        <div class="card">
+
+            <h2>Face Detection</h2>
+
+            <p>
+
+                Detect whether the student's face is visible during the learning session.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Eye Tracking</h2>
+
+            <p>
+
+                Monitor eye movement and estimate the student's level of attention.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Phone Detection</h2>
+
+            <p>
+
+                Detect mobile phone usage using the YOLOv8 object detection model.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Drowsiness Detection</h2>
+
+            <p>
+
+                Identify drowsiness and lack of attention using facial landmarks.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Head Pose Detection</h2>
+
+            <p>
+
+                Estimate whether students are looking at the screen or away.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>AI Suggestions</h2>
+
+            <p>
+
+                Generate personalized learning recommendations using Gemini AI.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Analytics Dashboard</h2>
+
+            <p>
+
+                View daily, weekly and monthly engagement reports with charts.
+
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Teacher Monitoring</h2>
+
+            <p>
+
+                Teachers can monitor students and analyze engagement levels in real time.
+
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+            ABOUT
+    ========================== -->
+
+    <section id="about" style="padding:70px;text-align:center;">
+
+        <h1 style="color:#2C3E73;margin-bottom:20px;">
+            About EngageAI
+        </h1>
+
+        <p style="font-size:18px;line-height:35px;color:#555;max-width:1000px;margin:auto;">
+
+            EngageAI is an AI-powered student engagement monitoring system
+            developed for educational institutions. It uses Computer Vision,
+            OpenCV, MediaPipe, YOLOv8 and Artificial Intelligence to monitor
+            student attention, detect distractions, estimate engagement scores
+            and generate detailed reports for teachers.
+
+        </p>
+
+    </section>
+
+    <!-- =========================
+            CONTACT
+    ========================== -->
+
+    <section id="contact" style="padding:70px;text-align:center;">
+
+        <h1 style="color:#2C3E73;margin-bottom:20px;">
+
+            Contact
+
+        </h1>
+
+        <p>
+
+            Email : support@engageai.com
+
+        </p>
+
+        <p>
+
+            Phone : +91 9876543210
+
+        </p>
+
+        <p>
+
+            Address : Kerala, India
+
+        </p>
+
+    </section>
+
+    <!-- =========================
+            FOOTER
+    ========================== -->
+
+    <footer>
+
+        <p>
+
+            © 2026 EngageAI | AI Powered Online Learning Engagement Analyzer
+
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

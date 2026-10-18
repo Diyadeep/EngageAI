@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>Student Registration</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#FDF6E3;
+}
+
+.container{
+    width:450px;
+    margin:40px auto;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,.2);
+}
+
+h2{
+    text-align:center;
+    color:#1E1B4B;
+    margin-bottom: 20px;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.password-group {
+    position: relative;
+    width: 100%;
+}
+
+.password-group input {
+    padding-right: 42px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+}
+
+.toggle-password:hover {
+    color: #1E1B4B;
+}
+
+.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #f5c6cb;
+    font-size: 14px;
+    text-align: center;
+}
+
+.error-text {
+    color: #d9534f;
+    font-size: 13px;
+    margin-top: -6px;
+    margin-bottom: 8px;
+    display: none;
+    text-align: left;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#1E1B4B;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover{
+    background:#312E81;
+}
+
+a{
+    text-decoration:none;
+    color:#1E1B4B;
+    font-weight: bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Student Registration</h2>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="alert">
+      {% for message in messages %}
+        <p style="margin: 0;">{{ message }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<form id="studentRegisterForm" action="/student-register" method="POST" autocomplete="off" onsubmit="return validateStudentRegisterForm()">
+
+<input type="text" id="name" name="name" placeholder="Full Name" autocomplete="off" required pattern="^[a-zA-Z\s]+$">
+<div id="nameError" class="error-text">Name must contain only alphabets and spaces.</div>
+
+<input type="text" id="roll_no" name="roll_no" placeholder="Roll Number" autocomplete="off" required pattern="^[a-zA-Z0-9\-\/]{3,20}$">
+<div id="rollNoError" class="error-text">Please enter a valid Roll Number (e.g. 101 or 2023CS01).</div>
+
+<input type="email" id="email" name="email" placeholder="Enter Email (example@gmail.com)" autocomplete="off" value="" required>
+<div id="emailError" class="error-text">Please enter a valid Gmail address (example@gmail.com).</div>
+
+<input type="text" id="phone" name="phone" placeholder="Phone Number (10 digits)" autocomplete="off" required maxlength="10" pattern="^[0-9]{10}$" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+<div id="phoneError" class="error-text">Phone number must contain exactly 10 digits.</div>
+
+<input type="text" id="course" name="course" placeholder="Course" autocomplete="off" required pattern="^[a-zA-Z\s]+$">
+<div id="courseError" class="error-text">Course must contain only alphabets and spaces.</div>
+
+<input type="text" id="semester" name="semester" placeholder="Semester (e.g. 1-8 or ONE-EIGHT)" autocomplete="off" required>
+<div id="semesterError" class="error-text">Semester must be a valid number from 1 to 8 or word (e.g. 1/ONE to 8/EIGHT).</div>
+
+<div class="password-group">
+<input type="password" id="password" name="password" placeholder="Password" autocomplete="new-password" value="" required minlength="6">
+<span class="toggle-password" onclick="togglePasswordVisibility('password', this)" title="Toggle Password Visibility">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+</span>
+</div>
+<div id="passwordError" class="error-text">Password must be at least 6 characters long.</div>
+
+<button type="submit">
+Register
+</button>
+
+</form>
+
+<br>
+
+<center>
+Already Registered?
+<a href="/login">Login</a>
+</center>
+
+</div>
+
+<script>
+const eyeOpenSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>`;
+const eyeClosedSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path><line x1="1" y1="1" x2="23" y2="23"></line></svg>`;
+
+function togglePasswordVisibility(inputId, iconContainer) {
+    const input = document.getElementById(inputId);
+    if (input.type === "password") {
+        input.type = "text";
+        iconContainer.innerHTML = eyeClosedSVG;
+    } else {
+        input.type = "password";
+        iconContainer.innerHTML = eyeOpenSVG;
+    }
+}
+
+const gmailPattern = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+let emailTouched = false;
+
+// Ensure email and password fields start empty whenever the registration page is opened or restored from cache
+function resetRegisterFormFields() {
+    const emailField = document.getElementById("email");
+    const passwordField = document.getElementById("password");
+    const emailError = document.getElementById("emailError");
+    const passwordError = document.getElementById("passwordError");
+
+    if (emailField && !emailField.matches(':focus')) {
+        emailField.value = "";
+        if (emailError) {
+            emailError.style.display = "none";
+            emailError.innerHTML = "Please enter a valid Gmail address (example@gmail.com).";
+            emailError.style.color = "#d9534f";
+        }
+        emailField.style.borderColor = "#ccc";
+        emailTouched = false;
+    }
+    if (passwordField && !passwordField.matches(':focus')) {
+        passwordField.value = "";
+        if (passwordError) {
+            passwordError.style.display = "none";
+        }
+        passwordField.style.borderColor = "#ccc";
+    }
+}
+
+function scheduleFieldClearing() {
+    resetRegisterFormFields();
+    setTimeout(resetRegisterFormFields, 50);
+    setTimeout(resetRegisterFormFields, 150);
+    setTimeout(resetRegisterFormFields, 300);
+}
+
+window.addEventListener("pageshow", scheduleFieldClearing);
+document.addEventListener("DOMContentLoaded", scheduleFieldClearing);
+window.addEventListener("load", scheduleFieldClearing);
+
+function validateEmailField(isSubmit = false) {
+    const emailInput = document.getElementById("email");
+    const emailError = document.getElementById("emailError");
+    if (!emailInput || !emailError) return true;
+
+    const val = emailInput.value.trim().toLowerCase();
+
+    if (!isSubmit && !emailTouched && val.length === 0) {
+        emailError.style.display = "none";
+        emailInput.style.borderColor = "#ccc";
+        return true;
+    }
+
+    if (!val || !gmailPattern.test(val)) {
+        emailError.innerHTML = "❌ Please enter a valid Gmail address (example@gmail.com).";
+        emailError.style.color = "#d9534f";
+        emailError.style.display = "block";
+        emailInput.style.borderColor = "#d9534f";
+        return false;
+    } else {
+        emailError.innerHTML = "✅ Valid email";
+        emailError.style.color = "#10b981";
+        emailError.style.display = "block";
+        emailInput.style.borderColor = "#10b981";
+        return true;
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const emailInput = document.getElementById("email");
+    if (emailInput) {
+        emailInput.addEventListener("blur", function() {
+            emailTouched = true;
+            validateEmailField(false);
+        });
+
+        emailInput.addEventListener("input", function() {
+            if (emailTouched || this.value.trim().length > 0) {
+                validateEmailField(false);
+            }
+        });
+    }
+});
+
+function validateStudentRegisterForm() {
+    let isValid = true;
+    const alphaSpacePattern = /^[a-zA-Z\s]+$/;
+
+    // Name
+    const name = document.getElementById("name");
+    const nameError = document.getElementById("nameError");
+    if (!name.value.trim() || !alphaSpacePattern.test(name.value.trim())) {
+        nameError.style.display = "block";
+        isValid = false;
+    } else {
+        nameError.style.display = "none";
+    }
+
+    // Roll Number
+    const rollNo = document.getElementById("roll_no");
+    const rollNoError = document.getElementById("rollNoError");
+    const rollNoPattern = /^[a-zA-Z0-9\-\/]{3,20}$/;
+    if (!rollNo.value.trim() || !rollNoPattern.test(rollNo.value.trim())) {
+        rollNoError.style.display = "block";
+        isValid = false;
+    } else {
+        rollNoError.style.display = "none";
+    }
+
+    // Email
+    emailTouched = true;
+    if (!validateEmailField(true)) {
+        isValid = false;
+    }
+
+    // Phone
+    const phone = document.getElementById("phone");
+    const phoneError = document.getElementById("phoneError");
+    const phonePattern = /^[0-9]{10}$/;
+    if (!phone.value.trim() || !phonePattern.test(phone.value.trim())) {
+        phoneError.style.display = "block";
+        isValid = false;
+    } else {
+        phoneError.style.display = "none";
+    }
+
+    // Course
+    const course = document.getElementById("course");
+    const courseError = document.getElementById("courseError");
+    if (!course.value.trim() || !alphaSpacePattern.test(course.value.trim())) {
+        courseError.style.display = "block";
+        isValid = false;
+    } else {
+        courseError.style.display = "none";
+    }
+
+    // Semester
+    const semester = document.getElementById("semester");
+    const semesterError = document.getElementById("semesterError");
+    const validSemesters = ["1", "2", "3", "4", "5", "6", "7", "8", "one", "two", "three", "four", "five", "six", "seven", "eight"];
+    if (!semester.value.trim() || !validSemesters.includes(semester.value.trim().toLowerCase())) {
+        semesterError.style.display = "block";
+        isValid = false;
+    } else {
+        semesterError.style.display = "none";
+    }
+
+    // Password
+    const password = document.getElementById("password");
+    const passwordError = document.getElementById("passwordError");
+    if (!password.value || password.value.length < 6) {
+        passwordError.style.display = "block";
+        isValid = false;
+    } else {
+        passwordError.style.display = "none";
+    }
+
+    return isValid;
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Teacher Profile - EngageAI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#FDF6E3;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100%;
+background:#1E1B4B;
+color:white;
+padding:30px 20px;
+}
+
+.sidebar h2{
+margin-bottom:40px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+margin:20px 0;
+}
+
+.sidebar ul li a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.sidebar ul li a.active{
+font-weight:700;
+color:#10B981;
+}
+
+.main{
+margin-left:260px;
+padding:30px;
+}
+
+.profile-card{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+margin-top:20px;
+max-width:700px;
+}
+
+.profile-card h2{
+color:#1E1B4B;
+margin-bottom:20px;
+border-bottom:2px solid #FDF6E3;
+padding-bottom:10px;
+}
+
+.profile-card table{
+width:100%;
+border-collapse:collapse;
+}
+
+.profile-card td{
+padding:14px;
+font-size:17px;
+border-bottom:1px solid #eee;
+}
+
+.profile-card td:first-child{
+font-weight:600;
+color:#1E1B4B;
+width:35%;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>EngageAI</h2>
+
+<ul>
+
+<li><a href="/teacher-dashboard">Dashboard</a></li>
+
+<li><a href="/teacher/profile" class="active">My Profile</a></li>
+
+<li><a href="/teacher/classes">Classes</a></li>
+
+<li><a href="/teacher/attendance">Attendance</a></li>
+
+<li><a href="/teacher/reports">Reports</a></li>
+
+<li><a href="/logout">Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>Teacher Profile</h1>
+
+<div class="profile-card">
+
+<h2>Personal Information</h2>
+
+<table>
+
+<tr>
+<td>Name</td>
+<td>{{ teacher[1] }}</td>
+</tr>
+
+<tr>
+<td>Employee ID</td>
+<td>{{ teacher[2] }}</td>
+</tr>
+
+<tr>
+<td>Department</td>
+<td>{{ teacher[3] }}</td>
+</tr>
+
+<tr>
+<td>Email Address</td>
+<td>{{ teacher[4] }}</td>
+</tr>
+
+<tr>
+<td>Phone Number</td>
+<td>{{ teacher[5] }}</td>
+</tr>
+
+</table>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

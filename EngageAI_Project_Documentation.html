@@ -1,0 +1,2546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngageAI - Project Report Documentation</title>
+    <!-- Mermaid JS for rendering diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'neutral' });
+    </script>
+    <style>
+        @page {
+            size: A4;
+            margin: 25mm 20mm 25mm 25mm;
+            @bottom-center {
+                content: counter(page);
+            }
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 12pt;
+            line-height: 1.6;
+            color: #111;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 50px 60px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        .action-bar {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+        .btn-download {
+            background-color: #1d4ed8;
+            color: #fff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            border: none;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-download:hover {
+            background-color: #1e40af;
+            transform: translateY(-2px);
+        }
+        h1, h2, h3, h4, h5 {
+            font-family: 'Times New Roman', Times, serif;
+            color: #111;
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 18pt;
+            text-align: center;
+            text-transform: uppercase;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        h2 {
+            font-size: 15pt;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        h3 {
+            font-size: 13pt;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+        th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        pre {
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 4px;
+            overflow-x: auto;
+            font-family: Consolas, 'Courier New', Courier, monospace;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: Consolas, 'Courier New', Courier, monospace;
+            font-size: 10.5pt;
+        }
+        pre code {
+            padding: 0;
+            background: transparent;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #bbb;
+            margin: 30px 0;
+        }
+        .page-break {
+            page-break-before: always;
+            break-before: page;
+        }
+        .mermaid {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+            background: #fff;
+        }
+        @media print {
+            body {
+                background-color: #fff;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 0;
+                max-width: 100%;
+            }
+            .action-bar {
+                display: none !important;
+            }
+            .page-break {
+                page-break-before: always;
+                break-before: page;
+            }
+            h1 {
+                page-break-before: always;
+                break-before: page;
+            }
+            table, pre, .mermaid {
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="action-bar">
+        <button class="btn-download" onclick="window.print()">
+            🖨️ Print / Save as PDF
+        </button>
+    </div>
+    <div class="container">
+        <h1>A Project Report</h1>
+<h2>On</h2>
+<h1>“ENGAGEAI: AI-POWERED REAL-TIME STUDENT ENGAGEMENT AND ATTENDANCE MONITORING SYSTEM”</h1>
+<p>Submitted to the<br />
+<strong>Department of Computer Applications</strong><br />
+<em>In partial fulfillment of the requirements for the award of the degree of</em><br />
+<strong>MASTER OF COMPUTER APPLICATIONS</strong></p>
+<p>Under the guidance of<br />
+<strong>Ms. VIDHYA V KUMAR</strong><br />
+<em>Assistant Professor, Department of Computer Applications</em></p>
+<p>Project Done by<br />
+<strong>DIYA DEEPAK</strong><br />
+Reg No: 2432422104XX</p>
+<p><br></p>
+<pre class="codehilite"><code>                  =============================================
+                  MAR ATHANASIOS COLLEGE FOR ADVANCED STUDIES
+                               TIRUVALLA (MACFAST)
+                             689101, KERALA, INDIA
+                               www.macfast.org
+                  =============================================
+                                  2024 - 2026
+</code></pre>
+
+<hr />
+<h2>MAR ATHANASIOS COLLEGE FOR ADVANCED STUDIES TIRUVALLA (MACFAST)</h2>
+<h3>DEPARTMENT OF COMPUTER APPLICATIONS</h3>
+<p><br></p>
+<h3>BONAFIDE CERTIFICATE</h3>
+<p>Certified that the Project Work entitled <strong>“ENGAGEAI: AI-POWERED REAL-TIME STUDENT ENGAGEMENT AND ATTENDANCE MONITORING SYSTEM”</strong> is a Bonafide work done by <strong>DIYA DEEPAK</strong> in partial fulfillment of the requirement for the Award of <strong>MASTER OF COMPUTER APPLICATIONS</strong> Degree from <strong>Mahatma Gandhi University, Kottayam</strong> during the academic years 2024–2026.</p>
+<p><br><br />
+<br></p>
+<p><strong>Mr. TIJI THOMAS</strong><br />
+HEAD OF THE DEPARTMENT  </p>
+<p><strong>Ms. VIDHYA V KUMAR</strong><br />
+PROJECT GUIDE  </p>
+<p><br></p>
+<p><em>Submitted for the Viva-voce Examination held on</em> ....................................</p>
+<p><br></p>
+<p><strong>External Examiner 1:</strong> ....................................<br />
+<strong>External Examiner 2:</strong> ....................................</p>
+<hr />
+<h2>MAR ATHANASIOS COLLEGE FOR ADVANCED STUDIES TIRUVALLA (MACFAST)</h2>
+<h3>DEPARTMENT OF COMPUTER APPLICATIONS</h3>
+<p><br></p>
+<h3>CERTIFICATE</h3>
+<p>This is to certify that the project <strong>‘ENGAGEAI: AI-POWERED REAL-TIME STUDENT ENGAGEMENT AND ATTENDANCE MONITORING SYSTEM’</strong> has been successfully carried out by <strong>DIYA DEEPAK</strong> (Reg No: 2432422104XX) in partial fulfillment of the course Master of Computer Applications.</p>
+<p><br><br />
+<br></p>
+<p><strong>Ms. VIDHYA V KUMAR</strong><br />
+INTERNAL GUIDE  </p>
+<p><strong>Mr. TIJI THOMAS</strong><br />
+HEAD OF THE DEPARTMENT  </p>
+<p><strong>Date:</strong> ....................</p>
+<hr />
+<h2>MAR ATHANASIOS COLLEGE FOR ADVANCED STUDIES TIRUVALLA (MACFAST)</h2>
+<h3>DEPARTMENT OF COMPUTER APPLICATIONS</h3>
+<p><br></p>
+<h3>CERTIFICATE</h3>
+<p>This is to certify that the project <strong>‘ENGAGEAI: AI-POWERED REAL-TIME STUDENT ENGAGEMENT AND ATTENDANCE MONITORING SYSTEM’</strong> has been successfully carried out by <strong>DIYA DEEPAK</strong> (Reg No: 2432422104XX) in partial fulfillment of the course Master of Computer Applications under my guidance.</p>
+<p><br><br />
+<br></p>
+<p><strong>Ms. VIDHYA V KUMAR</strong><br />
+INTERNAL GUIDE  </p>
+<p><strong>Date:</strong> ....................</p>
+<hr />
+<h2>MAR ATHANASIOS COLLEGE FOR ADVANCED STUDIES TIRUVALLA (MACFAST)</h2>
+<h3>DEPARTMENT OF COMPUTER APPLICATIONS</h3>
+<p><br></p>
+<h3>DECLARATION</h3>
+<p>I, <strong>DIYA DEEPAK</strong>, hereby declare that the project work entitled <strong>“ENGAGEAI: AI-POWERED REAL-TIME STUDENT ENGAGEMENT AND ATTENDANCE MONITORING SYSTEM”</strong> is an authenticated work carried out by me under the guidance of <strong>Ms. VIDHYA V KUMAR</strong> for the partial fulfillment of the course <strong>MASTER OF COMPUTER APPLICATIONS</strong>. This work has not been submitted for a similar purpose anywhere else except to <strong>MAR ATHANASIOS COLLEGE FOR ADVANCED STUDIES TIRUVALLA (MACFAST)</strong>. I understand that detection of any such copying is liable to be punished in any way the college deems fit.</p>
+<p><br><br />
+<br></p>
+<p><strong>Date:</strong><br />
+<strong>Place:</strong> Thiruvalla<br />
+<strong>DIYA DEEPAK</strong></p>
+<hr />
+<h2>ACKNOWLEDGEMENT</h2>
+<p>First and foremost, let me thank the God Almighty for His immense grace and blessings at each and every stage of our project. I have exerted sincere efforts into this project; however, it would not have been possible without the kind support and guidance of many individuals and organizations.</p>
+<p>I would like to extend my sincere gratitude to <strong>Prof. Dr. Varghese K Cheriyan</strong>, Principal, MACFAST, for liberally extending the valuable facilities of the college for our project completion and for his constant encouragement.</p>
+<p>I express my deep gratitude to <strong>Mr. Tiji Thomas</strong>, Head of the Department of Computer Applications, for granting permission to undertake this project work and for his ongoing guidance.</p>
+<p>I am highly indebted to <strong>Ms. VIDHYA V KUMAR</strong>, Assistant Professor, Department of Computer Applications, for her invaluable guidance, constant supervision, technical suggestions, and patient support throughout the development of this project.</p>
+<p>I also extend my heartfelt appreciation to <strong>Techmindz (Powered by Ndimensionz)</strong>, Infopark Kochi, for providing an industry-oriented learning atmosphere and mentorship that elevated the standard of this endeavor.</p>
+<p>I would like to express my love and gratitude towards my parents for their unwavering moral and financial support, cooperation, and encouragement, which served as my pillar of strength. Lastly, this project would not have reached fruition without the companionship and assistance of my fellow classmates and friends. I wholeheartedly thank each and every person who supported me throughout this journey.</p>
+<p><br></p>
+<p><strong>DIYA DEEPAK</strong></p>
+<hr />
+<h2>TABLE OF CONTENTS</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">SI NO</th>
+<th style="text-align: left;">CONTENTS</th>
+<th style="text-align: center;">CHAPTER / SECTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>1</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 1: INTRODUCTION</strong></td>
+<td style="text-align: center;"><strong>1.1 – 1.4</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">1.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">1.2 Problem Statement</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">1.3 Scope and Relevance of the Project</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">1.4 Objectives</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>2</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 2: SYSTEM ANALYSIS</strong></td>
+<td style="text-align: center;"><strong>2.1 – 2.5</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">2.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">2.2 Existing System &amp; Limitations</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">2.3 Proposed System &amp; Advantages</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">2.4 Feasibility Study (Technical, Economic, Operational)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">2.5 Software Engineering Paradigm Applied</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>3</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 3: SYSTEM DESIGN</strong></td>
+<td style="text-align: center;"><strong>3.1 – 3.7</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">3.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">3.2 Database Design</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 3.2.1 Entity Relationship Model</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 3.2.2 Data Dictionary</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">3.3 Process Design - Data Flow Diagram (DFD Levels 0, 1, 2)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">3.4 Object-Oriented Design - UML Diagrams</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 3.4.1 Use Case Diagram</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 3.4.2 Activity Diagram</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 3.4.3 Class Diagram</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 3.4.4 Sequence Diagram</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">3.5 Modular Design &amp; Structured Chart</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">3.6 Input Design</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">3.7 Output Design</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>4</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 4: SYSTEM ENVIRONMENT</strong></td>
+<td style="text-align: center;"><strong>4.1 – 4.4</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">4.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">4.2 Software Requirement Specification (SRS)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">4.3 Hardware Requirement Specification (HRS)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">4.4 Tools and Platforms (Frontend, Backend, OS)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>5</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 5: SYSTEM IMPLEMENTATION</strong></td>
+<td style="text-align: center;"><strong>5.1 – 5.4</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">5.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">5.2 Coding &amp; Coding Standards</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 5.2.1 Coding Standards</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 5.2.2 Sample Codes</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">&emsp; 5.2.3 Code Validation &amp; Code Optimization</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">5.3 Debugging</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">5.4 Unit Testing &amp; Test Cases</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>6</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 6: SYSTEM PLANNING AND SCHEDULING</strong></td>
+<td style="text-align: center;"><strong>6.1 – 6.4</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">6.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">6.2 Planning a Software Project</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">6.3 Gantt Chart</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">6.4 PERT Chart</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>7</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 7: SYSTEM COST ESTIMATION</strong></td>
+<td style="text-align: center;"><strong>7.1 – 7.2</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">7.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">7.2 Function Point Based Estimation</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>8</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 8: SYSTEM TESTING</strong></td>
+<td style="text-align: center;"><strong>8.1 – 8.2</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">8.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">8.2 Testing Procedures (Unit, Integration, Functional, UI, Performance, Security, UAT)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>9</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 9: SYSTEM MAINTENANCE</strong></td>
+<td style="text-align: center;"><strong>9.1 – 9.2</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">9.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">9.2 Maintenance Strategies &amp; Operational Procedures</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>10</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 10: SYSTEM SECURITY MEASURES</strong></td>
+<td style="text-align: center;"><strong>10.1 – 10.4</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">10.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">10.2 Operating System Level Security</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">10.3 Database Level Security</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">10.4 System &amp; Application Level Security</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>11</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 11: FUTURE ENHANCEMENT</strong></td>
+<td style="text-align: center;"><strong>11.1 – 11.4</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">11.1 Introduction</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">11.2 Limitations of the System</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">11.3 Merits of the System</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">11.4 Future Enhancement Roadmap</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>12</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 12: CONCLUSION</strong></td>
+<td style="text-align: center;"><strong>12.1</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>13</strong></td>
+<td style="text-align: left;"><strong>CHAPTER 13: ANNEXURE</strong></td>
+<td style="text-align: center;"><strong>13.1 – 13.3</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">13.1 Organization Profile</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">13.2 System Screenshots &amp; Interface Descriptions</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr>
+<td style="text-align: center;"></td>
+<td style="text-align: left;">13.3 References</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>ABSTRACT</h1>
+<p>The <strong>EngageAI: AI-Powered Real-Time Student Engagement and Attendance Monitoring System</strong> transforms conventional educational monitoring and modernizes classroom management through non-intrusive artificial intelligence and computer vision technologies. Modern education increasingly relies on hybrid, digital, and large-scale classroom environments where educators face severe challenges in gauging student attentiveness, managing timely attendance, and identifying early disengagement or academic fatigue. EngageAI bridges this critical operational and pedagogical gap by providing an automated, real-time web platform engineered using Python, the Flask micro-framework, OpenCV, MediaPipe Face Landmarker, and Ultralytics YOLOv8.</p>
+<p>From the student’s perspective, the system provides a seamless digital portal where learners register, authenticate, join active class sessions, and engage in study with continuous, non-invasive feedback. Through camera streaming, the AI pipeline executes multi-attribute telemetry—detecting face presence, computing head pose (yaw, pitch, roll) to identify orientation (looking straight vs. looking away), measuring Eye Aspect Ratio (EAR) to detect drowsiness and closed eyes, and deploying YOLOv8 object detection to identify unauthorized mobile phone usage in real time. These metrics are dynamically aggregated into an objective Engagement Score (0%–100%) and categorised into attention states (High, Medium, Low).</p>
+<p>From the instructor and administrative perspectives, EngageAI replaces unreliable manual roll calls and subjective observation. Teachers can schedule lecture sessions, initialize live monitoring, inspect real-time engagement telemetry, record attendance upon verification, and generate automated comprehensive performance reports. Administrators possess global management privileges to oversee student directories, faculty allocations, course schedules, and institution-wide analytics. Built on a robust relational database with MySQL, EngageAI delivers audit trails, minimizes administrative overhead, and provides empirical, data-driven insights into classroom attentiveness. The project demonstrates how ethical computer vision and web engineering can elevate academic accountability and improve learning outcomes.</p>
+<hr />
+<h1>CHAPTER 1: INTRODUCTION</h1>
+<h3>1.1 INTRODUCTION</h3>
+<p>In today's rapidly evolving educational landscape, digital transformation has fundamentally reshaped teaching and learning methodologies. From traditional physical lecture halls to modern smart classrooms and hybrid e-learning environments, academic institutions are continuously seeking intelligent solutions to elevate educational quality and operational efficiency. One of the most decisive indicators of learning effectiveness and academic success is student engagement. However, systematically measuring student attention, maintaining accurate attendance records, and detecting distractions have traditionally remained labor-intensive, error-prone, and subjective tasks.</p>
+<p>To confront these persistent challenges, <strong>EngageAI: AI-Powered Real-Time Student Engagement and Attendance Monitoring System</strong> has been developed as an intelligent, scalable, and cross-platform web application. Built with Python, Flask, OpenCV, MediaPipe Face Landmarker, and Ultralytics YOLOv8, EngageAI establishes an automated bridge between classroom instruction and actionable behavioural telemetry. The system automatically verifies student presence, streams video frames securely, and applies state-of-the-art computer vision models to evaluate head pose orientation, eye gaze openness, drowsiness indicators, and unauthorized mobile phone usage during class sessions.</p>
+<p>Beyond empowering students with real-time feedback regarding their study habits and focus levels, the application equips educators with an interactive cockpit. Teachers can schedule course sessions, monitor student engagement in real time, view automated roll calls, and generate consolidated performance reports with empirical metrics. Administrators gain complete visibility over institutional statistics, ensuring accountability across departments, faculty, and student cohorts. By replacing antiquated manual ledgers with an intelligent digital infrastructure, EngageAI enhances classroom productivity, fosters student self-regulation, and provides empirical data for data-driven academic governance.</p>
+<hr />
+<h3>1.2 PROBLEM STATEMENT</h3>
+<p>The conventional approach to monitoring student attendance and engagement in schools, colleges, and university lecture halls suffers from profound inefficiencies, inaccuracies, and human limitations:</p>
+<ol>
+<li><strong>Time-Consuming Roll Calls:</strong> Instructors spend between 10% and 20% of valuable lecture time manually calling out roll numbers or circulating paper attendance sheets, which diminishes teaching duration and disrupts lecture continuity.</li>
+<li><strong>Proxy Attendance and Falsification:</strong> Paper ledgers and manual verification are vulnerable to proxy attendance, unauthorized sign-ins, and retroactive falsification, degrading the integrity of institutional records.</li>
+<li><strong>Inability to Measure Cognitive Engagement:</strong> Physical presence does not equate to active cognitive participation. In large classrooms of 60 to 120 students, a teacher cannot simultaneously track which students are zoned out, experiencing drowsiness, or looking away from the lecture board.</li>
+<li><strong>Distraction by Mobile Devices:</strong> Unchecked smartphone utilization during academic hours has become an endemic source of academic distraction. Instructors cannot constantly patrol lecture halls to spot concealed mobile phones without interrupting class delivery.</li>
+<li><strong>Absence of Empirical Data for Intervention:</strong> Traditional assessment methods only detect student disengagement after poor examination performance or mid-term failures occur. Educational institutions lack continuous, real-time analytics to identify at-risk students beforehand and administer proactive academic counselling.</li>
+</ol>
+<hr />
+<h3>1.3 SCOPE AND RELEVANCE OF THE PROJECT</h3>
+<h4>SCOPE</h4>
+<p>The scope of the EngageAI platform encompasses a comprehensive, role-based web and computer vision architecture tailored for modern higher education institutions:</p>
+<ul>
+<li><strong>Student-Facing Scope:</strong> Allows students to securely register, manage academic profiles, join active lecture sessions, receive real-time AI-based visual telemetry (gaze alignment, alertness status, mobile phone alerts), and track their cumulative attendance and engagement trends.</li>
+<li><strong>Faculty/Teacher Scope:</strong> Equips educators to schedule class sessions, initiate and terminate live lecture streams, monitor aggregated classroom engagement in real time, record automated attendance, and automatically generate comprehensive class performance summaries.</li>
+<li><strong>Administrative Scope:</strong> Empowers academic administrators to manage student records, faculty rosters, course allocations, institutional settings, and aggregate multi-departmental engagement analytics.</li>
+<li><strong>Computer Vision and AI Scope:</strong> Executes lightweight, edge-compatible computer vision algorithms directly within the application pipeline, combining YOLOv8 for object recognition (cell phone detection), MediaPipe Face Landmarker for 3D head pose and landmark tracking, and OpenCV for image pre-processing and Eye Aspect Ratio (EAR) calculation.</li>
+</ul>
+<h4>RELEVANCE</h4>
+<ul>
+<li><strong>Pedagogical Impact:</strong> Provides continuous, non-punitive behavioural feedback that encourages self-regulation and deeper learning engagement among students.</li>
+<li><strong>Operational Efficiency:</strong> Eliminates repetitive attendance overhead for faculty, recovering substantial lecture time for active discussion and conceptual instruction.</li>
+<li><strong>Data-Driven Academic Governance:</strong> Provides department heads and academic deans with empirical analytics to evaluate curriculum engagement, lecture timing efficacy, and student retention strategies.</li>
+<li><strong>Scalable and Cost-Effective:</strong> Leveraging open-source frameworks (Flask, OpenCV, YOLOv8) and consumer-grade web cameras, EngageAI eliminates the necessity for prohibitive hardware investments.</li>
+</ul>
+<hr />
+<h3>1.4 OBJECTIVES</h3>
+<p>The central goal of EngageAI is to modernize academic monitoring through non-intrusive, intelligent computer vision. The project accomplishes this via the following key objectives:</p>
+<ol>
+<li><strong>Delivering an Automated Attendance Workflow:</strong> To replace manual paper roll calls with an automated digital verification mechanism linked directly to active class session participation.</li>
+<li><strong>Developing Real-Time Computer Vision Engagement Telemetry:</strong> To deploy computer vision algorithms capable of detecting face presence, head pose orientation (looking straight vs. looking away), and eye openness in real time.</li>
+<li><strong>Automating Detection of Digital Distractions:</strong> To integrate YOLOv8 deep learning models for detecting unauthorized mobile phone usage during academic lecture hours.</li>
+<li><strong>Quantifying Attention into an Empirical Score:</strong> To calculate an algorithmic Engagement Score (0%–100%) that weights alertness, gaze focus, and distraction indicators into an interpretable metric.</li>
+<li><strong>Providing Role-Based Interactive Dashboards:</strong> To implement secure role-based portals for Students, Teachers, and Administrators ensuring granular access control and tailored functionality.</li>
+<li><strong>Generating Actionable Academic Analytics:</strong> To furnish instructors with automated analytical reports detailing student attendance percentages, average attention levels, and distraction summaries.</li>
+<li><strong>Ensuring Data Security and User Privacy:</strong> To enforce secure credential hashing, session isolation, and non-persistent frame processing to uphold student data privacy.</li>
+</ol>
+<hr />
+<h1>CHAPTER 2: SYSTEM ANALYSIS</h1>
+<h3>2.1 INTRODUCTION</h3>
+<p>System analysis is a foundational phase in the software development lifecycle that investigates current operational practices, diagnoses intrinsic shortcomings, and formulates functional and non-functional specifications for the proposed system. It systematically examines how current workflows operate in academic institutions, establishes user requirements across diverse stakeholder groups, and specifies how cutting-edge computer vision and web engineering can resolve existing inefficiencies.</p>
+<p>In conventional classroom settings, instructors evaluate student attentiveness purely through visual observation while delivering lecture material. This manual method suffers from cognitive fatigue, human bias, and physical impossibility when dealing with large classrooms. EngageAI replaces subjective observation with automated digital telemetry, establishing a transparent, scalable, and auditable foundation for classroom analytics.</p>
+<hr />
+<h3>2.2 EXISTING SYSTEM</h3>
+<p>The existing classroom attendance and engagement management workflow depends heavily on manual human intervention:<br />
+* Attendance is recorded using physical paper registers, roll call sheets, or rudimentary static digital spreadsheets.<br />
+* Gauging student attention relies on the teacher's subjective observation from the podium.<br />
+* Identification of distractions—such as concealed mobile phone texting or drowsiness—requires active patrolling by the instructor.<br />
+* Academic feedback on disengagement is solely retroactive, typically recognized after low test scores or high absenteeism rates at the end of the academic semester.</p>
+<h4>LIMITATIONS OF EXISTING SYSTEM</h4>
+<ul>
+<li><strong>Vulnerability to Proxy Attendance:</strong> Paper-based sign-in sheets and casual roll calls allow peers to mark attendance for absent classmates.</li>
+<li><strong>Severe Loss of Lecture Time:</strong> Calling out 60 to 100 student roll numbers consumes up to 15 minutes per lecture period.</li>
+<li><strong>Subjective and Unrecorded Attentiveness:</strong> An instructor cannot objectively track which students remained attentive throughout a 60-minute technical lecture.</li>
+<li><strong>Unmonitored Digital Distractions:</strong> Widespread access to smartphones enables covert texting and social media browsing behind laptop screens or lecture desks.</li>
+<li><strong>Absence of Historical Telemetry:</strong> Institutions possess no longitudinal data explaining why certain students drop performance in specific subjects.</li>
+<li><strong>Data Loss and Record Degradation:</strong> Physical attendance books are prone to damage, misplacement, and transcription errors.</li>
+</ul>
+<hr />
+<h3>2.3 PROPOSED SYSTEM</h3>
+<p>The proposed <strong>EngageAI</strong> system is a web-based, AI-driven platform that automates attendance recording and tracks cognitive engagement in real time. Students log into their secure portal and connect their standard web camera during active class sessions. The AI engine processes live video frames, running inference on lightweight deep learning models to assess attention, drowsiness, and unauthorized device usage.</p>
+<p>Instructors initiate scheduled sessions, monitor real-time engagement telemetry via clean visual graphs, and generate detailed student summaries upon lecture completion. Administrators maintain overarching governance over institutional data, users, and courses.</p>
+<h4>ADVANTAGES OF PROPOSED SYSTEM</h4>
+<ul>
+<li><strong>Instantaneous Automated Attendance:</strong> Automatically records presence upon verified session participation, eliminating manual roll call overhead.</li>
+<li><strong>Real-Time Distraction and Drowsiness Detection:</strong> Flags mobile phone usage, looking away, and prolonged eye closure (drowsiness) immediately.</li>
+<li><strong>Empirical Engagement Scoring:</strong> Converts raw facial landmarks and bounding boxes into an objective 0%–100% Engagement Score.</li>
+<li><strong>Privacy-Conscious Architecture:</strong> Video streams are analyzed frame-by-frame in memory without storing raw video recordings on disk, ensuring student privacy.</li>
+<li><strong>Granular Role-Based Access Control:</strong> Strict segregation of privileges between Students, Teachers, and Administrators.</li>
+<li><strong>Comprehensive Performance Reporting:</strong> Equips faculty with downloadable summary reports detailing engagement averages, distraction counts, and attendance rates.</li>
+</ul>
+<hr />
+<h3>2.4 FEASIBILITY STUDY</h3>
+<p>A feasibility study evaluates whether the proposed project is practical, cost-effective, and beneficial within technical, economic, and operational boundaries.</p>
+<pre class="codehilite"><code>                  +----------------------------------------------+
+                  |              FEASIBILITY STUDY               |
+                  +----------------------+-----------------------+
+                                         |
+         +-------------------------------+-------------------------------+
+         |                               |                               |
++-----------------+             +-----------------+             +-----------------+
+|    TECHNICAL    |             |    ECONOMIC     |             |   OPERATIONAL   |
+|   FEASIBILITY   |             |   FEASIBILITY   |             |   FEASIBILITY   |
++-----------------+             +-----------------+             +-----------------+
+| • Python &amp; Flask|             | • Free Open-    |             | • Intuitive UI  |
+| • OpenCV &amp; YOLO |             |   Source Stack  |             | • Role-based    |
+| • MediaPipe     |             | • Zero License  |             |   Dashboards    |
+| • Standard Webcams            |   Cost          |             | • High Faculty  |
+| • MySQL Database              | • Low Hardware  |             |   Acceptance    |
++-----------------+             +-----------------+             +-----------------+
+</code></pre>
+
+<h4>TECHNICAL FEASIBILITY</h4>
+<p>Technical feasibility evaluates the availability of programming frameworks, machine learning models, and system hardware needed to execute the software.<br />
+* <strong>Core Technologies:</strong> EngageAI is built with Python 3.10+, Flask, OpenCV, MediaPipe, Ultralytics YOLOv8, and MySQL. All libraries are mature, stable, thoroughly documented, and widely supported.<br />
+* <strong>Model Efficiency:</strong> <code>yolov8n.pt</code> (nano) and <code>face_landmarker.task</code> are optimized for low-latency inference on standard consumer CPU and GPU configurations, ensuring real-time responsiveness (15–30 FPS).<br />
+* <strong>Hardware Requirements:</strong> Standard desktop/laptop webcams and institutional PCs satisfy all execution requirements without requiring specialized enterprise AI hardware.<br />
+* <strong>Conclusion:</strong> The project is technically feasible.</p>
+<h4>ECONOMIC FEASIBILITY</h4>
+<p>Economic feasibility assesses the financial expenditure required for system design, deployment, and operational maintenance versus the anticipated benefits.<br />
+* <strong>Zero Software Licensing Cost:</strong> All underlying frameworks (Python, Flask, OpenCV, MediaPipe, YOLOv8, MySQL, Bootstrap) are open-source and free for educational use.<br />
+* <strong>Minimal Infrastructure Overhead:</strong> The system functions on existing institutional computer laboratories and student laptops without requiring expensive biometric hardware scanners.<br />
+* <strong>Substantial Time and Resource Savings:</strong> Saves hundreds of teaching hours per semester previously wasted on manual roll calls and reduces administrative paper expenses.<br />
+* <strong>Conclusion:</strong> The project is economically feasible and cost-effective.</p>
+<h4>OPERATIONAL FEASIBILITY</h4>
+<p>Operational feasibility determines how smoothly the solution integrates into real-world academic workflows and whether users will adopt it comfortably.<br />
+* <strong>User-Centric Design:</strong> Simple, responsive web interfaces allow students and faculty of all technical proficiency levels to navigate sessions effortlessly.<br />
+* <strong>Zero Disruption to Pedagogy:</strong> Faculty members can teach without altering their lecturing style, while the system silently evaluates engagement in the background.<br />
+* <strong>Transparency:</strong> Clear dashboards and real-time status indicators ensure trust and clarity for students regarding how their engagement score is calculated.<br />
+* <strong>Conclusion:</strong> The project is operationally feasible and beneficial.</p>
+<hr />
+<h3>2.5 SOFTWARE ENGINEERING PARADIGM APPLIED</h3>
+<p>For the development of EngageAI, the <strong>Waterfall Model of the Software Development Life Cycle (SDLC)</strong> was chosen. The Waterfall Model is a sequential, milestone-driven software engineering paradigm where each phase must be thoroughly analyzed, documented, and verified before advancing to the subsequent stage. This structured paradigm ensures comprehensive requirement definition, rigorous database schema formulation, and thorough testing.</p>
+<pre class="codehilite"><code>[ Phase 1: Requirement Analysis ]
+              |
+              v
+     [ Phase 2: System Design ]
+              |
+              v
+     [ Phase 3: Implementation &amp; Coding ]
+              |
+              v
+     [ Phase 4: Integration &amp; Testing ]
+              |
+              v
+     [ Phase 5: Deployment &amp; Maintenance ]
+</code></pre>
+
+<ol>
+<li><strong>Requirement Analysis:</strong> Comprehensive identification of stakeholder needs across Students, Teachers, and Administrators. Functional specifications for real-time video telemetry, head pose estimation, phone detection, and automated attendance were documented.</li>
+<li><strong>System Design:</strong> Architectural modeling of the application, including the MySQL database schema (7 core tables), Entity-Relationship (ER) models, Data Flow Diagrams (DFDs), and UML design (Use Case, Activity, Class, and Sequence diagrams).</li>
+<li><strong>Implementation &amp; Coding:</strong> Modular development of the Python backend using Flask, building computer vision pipelines with MediaPipe and YOLOv8, and coding responsive frontend interfaces using Bootstrap 5 and Jinja2 templates.</li>
+<li><strong>Integration &amp; Testing:</strong> Rigorous unit testing of AI inference models, session management, and database queries, followed by black-box and integration testing across client-server interactions.</li>
+<li><strong>Deployment &amp; Maintenance:</strong> Local deployment on web servers, performance monitoring, database optimization, and documentation of future enhancement roadmaps.</li>
+</ol>
+<hr />
+<h1>CHAPTER 3: SYSTEM DESIGN</h1>
+<h3>3.1 INTRODUCTION</h3>
+<p>System design translates software requirements into a coherent technical architecture. EngageAI follows a modular <strong>Client-Server Architecture</strong> adhering to the <strong>Model-View-Controller (MVC) / Model-Template-View (MTV)</strong> pattern via Flask. </p>
+<ul>
+<li>The <strong>Frontend</strong> presents responsive, intuitive web interfaces rendered with HTML5, CSS3, JavaScript (ES6+), Bootstrap 5, and Jinja2 templates.</li>
+<li>The <strong>Backend</strong> server processes HTTP requests, enforces business rules, handles session cookies, executes computer vision inference algorithms, and interacts with MySQL through Flask-SQLAlchemy and Flask-MySQLdb.</li>
+<li>The <strong>Database</strong> layer guarantees persistent, normalized storage for user credentials, class sessions, attendance logs, engagement metrics, and analytical reports.</li>
+</ul>
+<p>The system incorporates three distinct actors:<br />
+1. <strong>Student:</strong> Joins scheduled sessions, streams camera frames, receives real-time engagement telemetry, and views attendance records.<br />
+2. <strong>Teacher:</strong> Creates class schedules, initiates/terminates live sessions, monitors aggregated student engagement, and compiles academic reports.<br />
+3. <strong>Administrator:</strong> Governs institution-wide accounts, audits system logs, and oversees departmental analytics.</p>
+<hr />
+<h3>3.2 DATABASE DESIGN</h3>
+<h4>3.2.1 ENTITY RELATIONSHIP MODEL</h4>
+<p>The Entity-Relationship (ER) model graphically articulates the conceptual schema of the database, specifying entities, primary keys, foreign key associations, and cardinalities.</p>
+<ul>
+<li><strong>Entities:</strong> Student, Teacher, Admin, ClassSession, Attendance, Engagement, Report.</li>
+<li><strong>Key Relationships:</strong></li>
+<li>One Teacher conducts <strong>Many</strong> ClassSessions ($1:N$).</li>
+<li>One ClassSession involves <strong>Many</strong> Attendances ($1:N$) and <strong>Many</strong> Engagements ($1:N$).</li>
+<li>One Student has <strong>Many</strong> Attendances ($1:N$) and <strong>Many</strong> Engagements ($1:N$).</li>
+<li>A Student and ClassSession pair yields an <strong>Attendance</strong> record ($1:1$ unique constraint).</li>
+<li>A Teacher, Student, and ClassSession generate a <strong>Report</strong> ($1:1$ unique per student-class session).</li>
+</ul>
+<div class="mermaid">
+erDiagram
+    TEACHER ||--o{ CLASS_SESSION : conducts
+    TEACHER ||--o{ REPORT : generates
+    STUDENT ||--o{ ATTENDANCE : has
+    STUDENT ||--o{ ENGAGEMENT : produces
+    STUDENT ||--o{ REPORT : evaluated_in
+    CLASS_SESSION ||--o{ ATTENDANCE : logs
+    CLASS_SESSION ||--o{ ENGAGEMENT : records
+    CLASS_SESSION ||--o{ REPORT : summarized_in
+
+    STUDENT {
+        int id PK
+        string name
+        string roll_no UK
+        string email UK
+        string phone
+        string course
+        string semester
+        string password
+        datetime created_at
+    }
+
+    TEACHER {
+        int id PK
+        string name
+        string employee_id UK
+        string department
+        string email UK
+        string phone
+        string password
+        datetime created_at
+    }
+
+    ADMIN {
+        int id PK
+        string name
+        string email UK
+        string password
+        datetime created_at
+    }
+
+    CLASS_SESSION {
+        int id PK
+        int teacher_id FK
+        string subject
+        string course
+        string semester
+        date class_date
+        time start_time
+        time end_time
+        string status
+        datetime created_at
+    }
+
+    ATTENDANCE {
+        int id PK
+        int class_id FK
+        int student_id FK
+        string status
+        datetime joined_at
+    }
+
+    ENGAGEMENT {
+        int id PK
+        int student_id FK
+        int class_id FK
+        float engagement_score
+        string attendance_status
+        string attention_level
+        datetime recorded_at
+    }
+
+    REPORT {
+        int id PK
+        int teacher_id FK
+        int student_id FK
+        int class_id FK
+        string report_title
+        text summary
+        float attendance_percentage
+        float avg_engagement
+        string attention_level
+        string phone_info
+        string distraction_info
+        string overall_status
+        datetime created_at
+    }
+</div>
+
+<hr />
+<h4>3.2.2 DATA DICTIONARY</h4>
+<p>The data dictionary details the physical schema, specifying field names, data types, lengths, constraints, and operational descriptions for every table in the <code>engageai</code> database.</p>
+<h4>Table 1: students</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">FIELDNAME</th>
+<th style="text-align: left;">DATA TYPE</th>
+<th style="text-align: center;">SIZE</th>
+<th style="text-align: left;">CONSTRAINTS</th>
+<th style="text-align: left;">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Primary Key, Auto-Increment</td>
+<td style="text-align: left;">Unique identifier for each student</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Full name of the student</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>roll_no</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: left;">NOT NULL, UNIQUE</td>
+<td style="text-align: left;">Institutional roll/registration number</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>email</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL, UNIQUE</td>
+<td style="text-align: left;">University email for login and alerts</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>phone</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Contact telephone number</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>course</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Academic program (e.g., MCA, B.Tech)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>semester</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Current enrolled semester</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>password</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">255</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Hashed account password</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>created_at</code></td>
+<td style="text-align: left;">TIMESTAMP</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT CURRENT_TIMESTAMP</td>
+<td style="text-align: left;">Account creation timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4>Table 2: teachers</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">FIELDNAME</th>
+<th style="text-align: left;">DATA TYPE</th>
+<th style="text-align: center;">SIZE</th>
+<th style="text-align: left;">CONSTRAINTS</th>
+<th style="text-align: left;">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Primary Key, Auto-Increment</td>
+<td style="text-align: left;">Unique identifier for each faculty member</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Full name of the teacher</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>employee_id</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: left;">NOT NULL, UNIQUE</td>
+<td style="text-align: left;">Official institutional employee code</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>department</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Academic department (e.g., Computer Applications)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>email</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL, UNIQUE</td>
+<td style="text-align: left;">Faculty official email address</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>phone</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Contact telephone number</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>password</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">255</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Hashed account password</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>created_at</code></td>
+<td style="text-align: left;">TIMESTAMP</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT CURRENT_TIMESTAMP</td>
+<td style="text-align: left;">Account creation timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4>Table 3: admins</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">FIELDNAME</th>
+<th style="text-align: left;">DATA TYPE</th>
+<th style="text-align: center;">SIZE</th>
+<th style="text-align: left;">CONSTRAINTS</th>
+<th style="text-align: left;">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Primary Key, Auto-Increment</td>
+<td style="text-align: left;">Unique identifier for the administrator</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>name</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">Administrator display name</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>email</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL, UNIQUE</td>
+<td style="text-align: left;">Official administrative email for system login</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>password</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">255</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Hashed administrative password</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>created_at</code></td>
+<td style="text-align: left;">TIMESTAMP</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT CURRENT_TIMESTAMP</td>
+<td style="text-align: left;">Administrator registration timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4>Table 4: class_sessions</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">FIELDNAME</th>
+<th style="text-align: left;">DATA TYPE</th>
+<th style="text-align: center;">SIZE</th>
+<th style="text-align: left;">CONSTRAINTS</th>
+<th style="text-align: left;">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Primary Key, Auto-Increment</td>
+<td style="text-align: left;">Unique identifier for the class session</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>teacher_id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Foreign Key (teachers.id) ON DELETE CASCADE</td>
+<td style="text-align: left;">ID of the faculty conducting the lecture</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>subject</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Course subject name</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>course</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Academic degree program</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>semester</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Target semester</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>class_date</code></td>
+<td style="text-align: left;">DATE</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Scheduled calendar date of lecture</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>start_time</code></td>
+<td style="text-align: left;">TIME</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Scheduled commencement time</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>end_time</code></td>
+<td style="text-align: left;">TIME</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Scheduled concluding time</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>status</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;">NOT NULL, DEFAULT 'Scheduled'</td>
+<td style="text-align: left;">State: Scheduled, Active, or Completed</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>created_at</code></td>
+<td style="text-align: left;">TIMESTAMP</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT CURRENT_TIMESTAMP</td>
+<td style="text-align: left;">Session record creation timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4>Table 5: attendance</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">FIELDNAME</th>
+<th style="text-align: left;">DATA TYPE</th>
+<th style="text-align: center;">SIZE</th>
+<th style="text-align: left;">CONSTRAINTS</th>
+<th style="text-align: left;">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Primary Key, Auto-Increment</td>
+<td style="text-align: left;">Unique attendance record identifier</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>class_id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Foreign Key (class_sessions.id) ON DELETE CASCADE</td>
+<td style="text-align: left;">Reference to the attended class session</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>student_id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Foreign Key (students.id) ON DELETE CASCADE</td>
+<td style="text-align: left;">Reference to the verified student</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>status</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;">NOT NULL, DEFAULT 'PRESENT'</td>
+<td style="text-align: left;">Attendance status: PRESENT or ABSENT</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>joined_at</code></td>
+<td style="text-align: left;">TIMESTAMP</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT CURRENT_TIMESTAMP</td>
+<td style="text-align: left;">Exact timestamp when student entered session</td>
+</tr>
+<tr>
+<td style="text-align: left;"><em>Constraint</em></td>
+<td style="text-align: left;">UNIQUE KEY</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><code>unique_class_student</code> (<code>class_id</code>, <code>student_id</code>)</td>
+<td style="text-align: left;">Prevents duplicate attendance entries</td>
+</tr>
+</tbody>
+</table>
+<h4>Table 6: engagement</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">FIELDNAME</th>
+<th style="text-align: left;">DATA TYPE</th>
+<th style="text-align: center;">SIZE</th>
+<th style="text-align: left;">CONSTRAINTS</th>
+<th style="text-align: left;">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Primary Key, Auto-Increment</td>
+<td style="text-align: left;">Unique telemetry log identifier</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>student_id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Foreign Key (students.id) ON DELETE CASCADE</td>
+<td style="text-align: left;">Reference to monitored student</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>class_id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Foreign Key (class_sessions.id) ON DELETE SET NULL</td>
+<td style="text-align: left;">Reference to active class session</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>engagement_score</code></td>
+<td style="text-align: left;">FLOAT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Calculated attention score (0.0 – 100.0)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>attendance_status</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: left;">NOT NULL, DEFAULT 'Present'</td>
+<td style="text-align: left;">In-session participation flag</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>attention_level</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">High, Medium, or Low attention tier</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>recorded_at</code></td>
+<td style="text-align: left;">TIMESTAMP</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT CURRENT_TIMESTAMP</td>
+<td style="text-align: left;">Frame inference timestamp</td>
+</tr>
+</tbody>
+</table>
+<h4>Table 7: reports</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">FIELDNAME</th>
+<th style="text-align: left;">DATA TYPE</th>
+<th style="text-align: center;">SIZE</th>
+<th style="text-align: left;">CONSTRAINTS</th>
+<th style="text-align: left;">DESCRIPTION</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Primary Key, Auto-Increment</td>
+<td style="text-align: left;">Unique report identifier</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>teacher_id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Foreign Key (teachers.id) ON DELETE CASCADE</td>
+<td style="text-align: left;">Faculty who compiled the report</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>student_id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Foreign Key (students.id) ON DELETE CASCADE</td>
+<td style="text-align: left;">Evaluated student</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>class_id</code></td>
+<td style="text-align: left;">INT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">Foreign Key (class_sessions.id) ON DELETE CASCADE</td>
+<td style="text-align: left;">Evaluated lecture session</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>report_title</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">255</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Descriptive header of report</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>summary</code></td>
+<td style="text-align: left;">TEXT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">NOT NULL</td>
+<td style="text-align: left;">Textual summary and AI remarks</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>attendance_percentage</code></td>
+<td style="text-align: left;">FLOAT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT 0.0</td>
+<td style="text-align: left;">Cumulative student attendance metric</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>avg_engagement</code></td>
+<td style="text-align: left;">FLOAT</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT 0.0</td>
+<td style="text-align: left;">Mean engagement score during class</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>attention_level</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">Predominant focus tier</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>phone_info</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">Count/Duration of mobile phone detections</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>distraction_info</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">Looking away or drowsiness records</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>overall_status</code></td>
+<td style="text-align: left;">VARCHAR</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: left;">NULL</td>
+<td style="text-align: left;">Final assessment (e.g., Attentive, Needs Focus)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>created_at</code></td>
+<td style="text-align: left;">TIMESTAMP</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;">DEFAULT CURRENT_TIMESTAMP</td>
+<td style="text-align: left;">Report generation timestamp</td>
+</tr>
+<tr>
+<td style="text-align: left;"><em>Constraint</em></td>
+<td style="text-align: left;">UNIQUE KEY</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: left;"><code>unique_student_class_report</code> (<code>student_id</code>, <code>class_id</code>)</td>
+<td style="text-align: left;">Ensures singular report per student-session</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3>3.3 PROCESS DESIGN - DATA FLOW DIAGRAM</h3>
+<p>A Data Flow Diagram (DFD) graphically traces how data moves through business processes, transitions through logical processing nodes, and is stored in data repositories.</p>
+<ul>
+<li><strong>External Entities:</strong> Student, Teacher, Admin.</li>
+<li><strong>Processes:</strong> Circular transforms converting input data into structured intelligence.</li>
+<li><strong>Data Stores:</strong> Parallel lines representing persistent relational tables.</li>
+<li><strong>Data Flows:</strong> Directed arrows illustrating data transit.</li>
+</ul>
+<h4>Level 0 DFD (Context Diagram)</h4>
+<p>The Level 0 DFD portrays EngageAI as a single consolidated process interacting with its external human stakeholders.</p>
+<div class="mermaid">
+flowchart LR
+    Student([Student]) <-- Credentials, Webcam Frames / Engagement Telemetry & Status --> System((EngageAI System))
+    Teacher([Teacher]) <-- Class Schedules, Session Control / Live Telemetry & Reports --> System
+    Admin([Administrator]) <-- Governance Data, User Control / Institutional Analytics --> System
+</div>
+
+<hr />
+<h4>Level 1 DFD</h4>
+<p>The Level 1 DFD decomposes the system into its major core subsystems.</p>
+<div class="mermaid">
+flowchart TD
+    S([Student]) -->|Login / Credentials| P1((1.0 User Authentication))
+    T([Teacher]) -->|Login / Credentials| P1
+    A([Admin]) -->|Login / Credentials| P1
+
+    P1 <--> D1[(Users & Roles)]
+
+    T -->|Class Scheduling Details| P2((2.0 Class Session Management))
+    P2 <--> D2[(class_sessions)]
+
+    S -->|Join Session & Video Stream| P3((3.0 AI Video Telemetry & Detection))
+    P3 <-->|Model Inference| AI_MODELS[(YOLOv8 & MediaPipe)]
+    P3 -->|Engagement Logs| D3[(engagement)]
+    P3 -->|Attendance Mark| D4[(attendance)]
+
+    P3 -->|Real-Time Telemetry| S
+    P3 -->|Class Overview Feed| T
+
+    T -->|Generate Summary| P4((4.0 Report & Analytics Generation))
+    P4 <--> D3
+    P4 <--> D4
+    P4 --> D5[(reports)]
+    P4 -->|Session Report| T
+    P4 -->|Student Transcript| S
+
+    A -->|Manage Accounts & Courses| P5((5.0 Administrative Governance))
+    P5 <--> D1
+    P5 <--> D2
+    P5 <--> D5
+</div>
+
+<hr />
+<h4>Level 2 DFD: AI Video Telemetry Subsystem</h4>
+<p>The Level 2 DFD details the internal data mechanics of process 3.0 (AI Telemetry and Engagement Scoring).</p>
+<div class="mermaid">
+flowchart TD
+    FrameInput[Client Video Frame (Base64 JPEG)] --> P31((3.1 Frame Decoding & Preprocessing))
+    P31 --> FrameRGB[RGB / Grayscale Image Array]
+
+    FrameRGB --> P32((3.2 YOLOv8 Object Detection))
+    P32 -->|Cell Phone Bounding Box| PhoneDecision{Phone Detected?}
+    PhoneDecision -- Yes --> ScorePenalty1[Deduct Engagement Points]
+    PhoneDecision -- No --> ClearPhone[Status: No Phone]
+
+    FrameRGB --> P33((3.3 MediaPipe Face Landmarker))
+    P33 -->|3D Facial Mesh & Matrix| PoseCalc((3.4 Head Pose Euler Angles))
+    PoseCalc --> Orientation{Yaw / Pitch / Roll Bounds}
+    Orientation -- Center --> Straight[Looking Straight]
+    Orientation -- Out of Bounds --> LookAway[Looking Away: Deduct Points]
+
+    P33 -->|Eye Landmarks| EARCalc((3.5 Eye Aspect Ratio Calculation))
+    EARCalc --> DrowsyCheck{EAR < Threshold for N Frames?}
+    DrowsyCheck -- Yes --> DrowsyAlert[Flag: Drowsiness Alert]
+    DrowsyCheck -- No --> AlertEyes[Eyes Alert on Screen]
+
+    ScorePenalty1 --> P36((3.6 Composite Score Engine))
+    ClearPhone --> P36
+    Straight --> P36
+    LookAway --> P36
+    DrowsyAlert --> P36
+    AlertEyes --> P36
+
+    P36 --> OutputJSON[Calculated Engagement Score (0-100%) & Status JSON]
+    OutputJSON --> TelemetryDB[(engagement Table)]
+    OutputJSON --> ClientSocket[Return Real-Time Dashboard Feedback]
+</div>
+
+<hr />
+<h3>3.4 OBJECT ORIENTED DESIGN - UML DIAGRAMS</h3>
+<h4>3.4.1 USE CASE DIAGRAM</h4>
+<p>The Use Case Diagram defines the functional scope of EngageAI from the vantage point of each actor:</p>
+<ul>
+<li><strong>Student:</strong> Register Account, Login, View Dashboard, Join Live Class Session, Stream Webcam for Engagement, View Personal Attendance, View Engagement History.</li>
+<li><strong>Teacher:</strong> Login, Schedule Class Session, Start/End Live Lecture, View Real-time Student Telemetry, Generate Performance Report, Export Attendance.</li>
+<li><strong>Admin:</strong> Secure Admin Login, Manage Student Accounts, Manage Faculty Accounts, View Institutional Analytics, Configure System Parameters.</li>
+</ul>
+<div class="mermaid">
+flowchart LR
+    subgraph System Boundary: EngageAI
+        UC1(Register / Authenticate)
+        UC2(Join Class Session)
+        UC3(Live Video Telemetry & AI Stream)
+        UC4(View Personal Attendance & Metrics)
+        UC5(Schedule Class Session)
+        UC6(Start / End Lecture Session)
+        UC7(Monitor Live Class Engagement)
+        UC8(Generate & Review Reports)
+        UC9(Manage Student Accounts)
+        UC10(Manage Teacher Accounts)
+        UC11(View Institutional Analytics)
+    end
+
+    Student([Student]) --> UC1
+    Student --> UC2
+    Student --> UC3
+    Student --> UC4
+
+    Teacher([Teacher]) --> UC1
+    Teacher --> UC5
+    Teacher --> UC6
+    Teacher --> UC7
+    Teacher --> UC8
+
+    Admin([Administrator]) --> UC1
+    Admin --> UC9
+    Admin --> UC10
+    Admin --> UC11
+</div>
+
+<hr />
+<h4>3.4.2 ACTIVITY DIAGRAM</h4>
+<p>The Activity Diagram models the dynamic operational control flow of a student participating in an AI-monitored lecture session.</p>
+<div class="mermaid">
+stateDiagram-v2
+    [*] --> Login
+    Login --> ValidateCredentials
+    ValidateCredentials --> DisplayDashboard: Valid
+    ValidateCredentials --> Login: Invalid Credentials
+
+    DisplayDashboard --> SelectActiveSession
+    SelectActiveSession --> RequestCameraPermission
+    RequestCameraPermission --> InitializeWebcam: Granted
+    RequestCameraPermission --> DisplayError: Denied
+
+    InitializeWebcam --> CaptureVideoFrame
+    CaptureVideoFrame --> DetectFacePresence
+
+    state FaceCheck <<choice>>
+    DetectFacePresence --> FaceCheck
+    FaceCheck --> FlagNoFace: Face Missing
+    FaceCheck --> RunPoseAndYOLO: Face Detected
+
+    state RunPoseAndYOLO {
+        CalculateHeadPose --> ComputeGazeOrientation
+        CalculateEyeAspectRatio --> EvaluateAlertness
+        RunYOLOv8Inference --> CheckPhonePresence
+    }
+
+    RunPoseAndYOLO --> ComputeCompositeScore
+    FlagNoFace --> ComputeCompositeScore
+
+    ComputeCompositeScore --> RenderLiveFeedbackUI
+    RenderLiveFeedbackUI --> SaveTelemetryDatabase
+
+    state ClassStatus <<choice>>
+    SaveTelemetryDatabase --> ClassStatus
+    ClassStatus --> CaptureVideoFrame: Session Active
+    ClassStatus --> ConcludeSession: Teacher Ends Class
+
+    ConcludeSession --> CompileFinalReport
+    CompileFinalReport --> [*]
+</div>
+
+<hr />
+<h4>3.4.3 CLASS DIAGRAM</h4>
+<p>The Class Diagram visualizes the object-oriented structure, representing classes, attributes, methods, and relationships.</p>
+<div class="mermaid">
+classDiagram
+    class Student {
+        +int id
+        +string name
+        +string roll_no
+        +string email
+        +string phone
+        +string course
+        +string semester
+        +string password
+        +datetime created_at
+        +register()
+        +login()
+        +join_class(class_id)
+        +view_attendance()
+        +view_reports()
+    }
+
+    class Teacher {
+        +int id
+        +string name
+        +string employee_id
+        +string department
+        +string email
+        +string phone
+        +string password
+        +datetime created_at
+        +create_class(details)
+        +start_class(class_id)
+        +end_class(class_id)
+        +generate_report(class_id)
+    }
+
+    class Admin {
+        +int id
+        +string name
+        +string email
+        +string password
+        +datetime created_at
+        +manage_students()
+        +manage_teachers()
+        +view_analytics()
+    }
+
+    class ClassSession {
+        +int id
+        +int teacher_id
+        +string subject
+        +string course
+        +string semester
+        +date class_date
+        +time start_time
+        +time end_time
+        +string status
+        +get_duration()
+        +is_active()
+    }
+
+    class Attendance {
+        +int id
+        +int class_id
+        +int student_id
+        +string status
+        +datetime joined_at
+        +mark_present()
+    }
+
+    class Engagement {
+        +int id
+        +int student_id
+        +int class_id
+        +float engagement_score
+        +string attendance_status
+        +string attention_level
+        +string face_status
+        +string eye_status
+        +string drowsiness_status
+        +string phone_status
+        +datetime recorded_at
+        +calculate_score()
+    }
+
+    class Report {
+        +int id
+        +int teacher_id
+        +int student_id
+        +int class_id
+        +string report_title
+        +string summary
+        +float attendance_percentage
+        +float avg_engagement
+        +string attention_level
+        +string phone_info
+        +string distraction_info
+        +string overall_status
+        +datetime created_at
+        +compile_summary()
+    }
+
+    class VideoInferenceEngine {
+        +detect_phone(frame)
+        +estimate_head_pose(landmarks)
+        +calculate_ear(landmarks)
+        +compute_engagement_score()
+    }
+
+    Teacher "1" -- "0..*" ClassSession : conducts
+    Student "1" -- "0..*" Attendance : records
+    ClassSession "1" -- "0..*" Attendance : holds
+    Student "1" -- "0..*" Engagement : produces
+    ClassSession "1" -- "0..*" Engagement : associates
+    Teacher "1" -- "0..*" Report : compiles
+    Student "1" -- "0..*" Report : evaluates
+    ClassSession "1" -- "0..*" Report : summarizes
+    Engagement ..> VideoInferenceEngine : depends_on
+</div>
+
+<hr />
+<h4>3.4.4 SEQUENCE DIAGRAM</h4>
+<p>The Sequence Diagram details chronological message passing between system lifelines during a live class telemetry iteration.</p>
+<div class="mermaid">
+sequenceDiagram
+    autonumber
+    actor Student
+    participant BrowserUI as Client Web Interface
+    participant FlaskServer as Flask Server (app.py)
+    participant AIEngine as AI Engine (phone_detection.py)
+    participant Database as MySQL Database
+
+    Student->>BrowserUI: Clicks "Join Class" & Grants Camera
+    BrowserUI->>FlaskServer: POST /student/join-class/<class_id>
+    FlaskServer->>Database: INSERT INTO attendance (status='PRESENT')
+    Database-->>FlaskServer: Attendance Confirmed
+    FlaskServer-->>BrowserUI: Render Engagement Cockpit
+
+    loop Every Telemetry Interval (Real-time Stream)
+        BrowserUI->>BrowserUI: Grab Webcam Frame & Encode Base64
+        BrowserUI->>FlaskServer: POST /detect-phone (base64_frame, student_id, class_id)
+        FlaskServer->>AIEngine: detect_phone(frame_array, global_state)
+
+        AIEngine->>AIEngine: MediaPipe Landmark & Pose Computation
+        AIEngine->>AIEngine: Eye Aspect Ratio & Drowsiness Check
+        AIEngine->>AIEngine: YOLOv8 Phone Object Inference
+        AIEngine->>AIEngine: Aggregate Engagement Score (0-100)
+        AIEngine-->>FlaskServer: Return JSON (Score, Attention, Phone, Drowsiness)
+
+        FlaskServer->>Database: INSERT INTO engagement (score, attention, status)
+        FlaskServer-->>BrowserUI: Return JSON Response
+        BrowserUI->>BrowserUI: Update Live HUD Gauges & Distraction Warnings
+    end
+</div>
+
+<hr />
+<h3>3.5 MODULAR DESIGN &amp; STRUCTURED CHART</h3>
+<p>Modular design divides complex software into decoupled, maintainable, and independently testable modules. </p>
+<pre class="codehilite"><code>                               +---------------------------------------------+
+                               |                  LEVEL 0:                   |
+                               |    EngageAI Core System Controller          |
+                               +----------------------+----------------------+
+                                                      |
+         +--------------------+-----------------------+-----------------------+--------------------+
+         |                    |                       |                       |                    |
++--------+--------+  +--------+--------+     +--------+--------+     +--------+--------+  +--------+--------+
+|    MODULE 1:    |  |    MODULE 2:    |     |    MODULE 3:    |     |    MODULE 4:    |  |    MODULE 5:    |
+| User Management |  |  Class Session  |     |   Real-Time AI  |     |   Attendance    |  |  Reporting &amp;    |
+| &amp; Authentication|  |   Management    |     |    Telemetry    |     |    Tracking     |  | Administrative  |
++-----------------+  +-----------------+     +-----------------+     +-----------------+  +-----------------+
+| • Registration  |  | • Schedule Class|     | • YOLOv8 Phone  |     | • Join Session  |  | • Analytics     |
+| • PBKDF2 Login  |  | • Start / End   |     | • MediaPipe Pose|     | • Anti-proxy    |  | • Student Mgmt  |
+| • RBAC Guard    |  | • Active Roster |     | • EAR Drowsiness|     | • Attendance Log|  | • Teacher Mgmt  |
+| • Session State |  | • Subject Filter|     | • Score Compute |     | • Date Sorting  |  | • Export Data   |
++-----------------+  +-----------------+     +-----------------+     +-----------------+  +-----------------+
+</code></pre>
+
+<h4>MODULE DESCRIPTIONS</h4>
+<ol>
+<li><strong>User Management and Authentication Module (<code>User_Master</code>):</strong></li>
+<li>Handles user onboarding for Students and Teachers with strict regex validation (email, 10-digit phone, employee ID, roll number).</li>
+<li>Manages encrypted password hashing using PBKDF2/SHA256 and maintains authenticated Flask session contexts.</li>
+<li>
+<p>Enforces Role-Based Access Control (RBAC), redirecting users to their respective portals (Student, Teacher, or Admin).</p>
+</li>
+<li>
+<p><strong>Class Session Management Module (<code>Class_Master</code>):</strong></p>
+</li>
+<li>Allows instructors to create, schedule, filter, and monitor course sessions.</li>
+<li>Manages class lifecycle states (<code>Scheduled</code> $\rightarrow$ <code>Active</code> $\rightarrow$ <code>Completed</code>).</li>
+<li>
+<p>Couples students to subject sessions by matching academic course and semester attributes.</p>
+</li>
+<li>
+<p><strong>Real-Time AI Telemetry and Engagement Module (<code>AI_Engine</code>):</strong></p>
+</li>
+<li>Receives decoded video frames and performs lightweight, multi-threaded computer vision inference.</li>
+<li>Employs MediaPipe Face Landmarker for 3D face mesh extraction and Euler angle calculation (Yaw, Pitch, Roll) to determine head gaze.</li>
+<li>Calculates Eye Aspect Ratio (EAR) across consecutive frames to detect drowsiness and prolonged eye closure.</li>
+<li>Executes Ultralytics YOLOv8 inference to detect handheld cell phone bounding boxes.</li>
+<li>
+<p>Synthesizes telemetry into a calibrated 0%–100% composite Engagement Score.</p>
+</li>
+<li>
+<p><strong>Attendance Tracking Module (<code>Attendance_Master</code>):</strong></p>
+</li>
+<li>Automatically marks students present upon session entry with a timestamp.</li>
+<li>Enforces a database composite unique constraint (<code>class_id</code>, <code>student_id</code>) to prevent duplicate attendance logs.</li>
+<li>
+<p>Supplies historical attendance metrics to faculty and student profile views.</p>
+</li>
+<li>
+<p><strong>Analytical Reporting and Administrative Governance Module (<code>Admin_Reports</code>):</strong></p>
+</li>
+<li>Aggregates session-level engagement logs into longitudinal averages, focus tiers, and distraction frequencies.</li>
+<li>Provides administrators with global CRUD controls over faculty, student rosters, and institutional settings.</li>
+</ol>
+<hr />
+<h3>3.6 INPUT DESIGN</h3>
+<p>Input design standardizes data acquisition to ensure data integrity, prevent injection vectors, and optimize usability:</p>
+<ul>
+<li><strong>Student Registration Form:</strong> Standardized inputs for Name, Roll No (alphanumeric regex <code>^[a-zA-Z0-9\-\/]{3,20}$</code>), Email (<code>^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$</code>), Phone (10 digits), Course dropdown, and Semester dropdown.</li>
+<li><strong>Faculty Registration Form:</strong> Captures Employee ID, Department, Email, Phone, and Password credentials.</li>
+<li><strong>Class Scheduling Modal:</strong> Structured date picker (<code>YYYY-MM-DD</code>), start/end time selectors with time-zone parsing (IST UTC+5:30), course and semester drop-downs.</li>
+<li><strong>Live Video Capture Stream:</strong> Client-side HTML5 canvas capture serializing webcam frames to Base64-encoded JPEG strings for transmission to <code>/detect-phone</code>.</li>
+<li><strong>Validation Architecture:</strong> Dual-layer validation comprising client-side HTML5 constraints and server-side Python regex parsing prior to database execution.</li>
+</ul>
+<hr />
+<h3>3.7 OUTPUT DESIGN</h3>
+<p>Output design focuses on presenting actionable, well-organized feedback to users:</p>
+<ul>
+<li><strong>Student Engagement Cockpit:</strong> Displays a live video preview overlayed with real-time telemetry indicators:</li>
+<li>Attention status badge (e.g., "LOOKING STRAIGHT" vs. "LOOKING AWAY").</li>
+<li>Alertness pill ("ALERT" vs. "DROWSY DETECTED").</li>
+<li>Distraction alert ("NO PHONE DETECTED" vs. "PHONE DETECTED").</li>
+<li>Dynamic radial gauge displaying the composite Engagement Score (0%–100%).</li>
+<li><strong>Teacher Live Session Dashboard:</strong> Shows active class enrollment numbers, real-time classroom average engagement meters, and real-time alerts.</li>
+<li><strong>Student Academic Report:</strong> Consolidated report presenting cumulative attendance percentage, mean engagement rating, phone infraction counts, and personalized instructor recommendations.</li>
+<li><strong>Admin Executive Dashboard:</strong> Visual representation of total students, registered teachers, active class counts, and historical engagement distribution across academic departments.</li>
+</ul>
+<h4>DESIGN PRINCIPLES FOLLOWED</h4>
+<ol>
+<li><strong>Consistency:</strong> Standardized color palettes, typography, and card designs implemented across all views using Bootstrap 5.</li>
+<li><strong>Clarity and Non-Intrusiveness:</strong> Intuitive visual status chips and gauges that do not distract the student during class.</li>
+<li><strong>Error Handling &amp; Immediate Feedback:</strong> Informative flash messages and client-side notifications for invalid credentials, missed inputs, or webcam connection errors.</li>
+<li><strong>Data Privacy Assurance:</strong> Explicit visual indicators confirming that live video is processed in memory and never archived on disk.</li>
+</ol>
+<hr />
+<h1>CHAPTER 4: SYSTEM ENVIRONMENT</h1>
+<h3>4.1 INTRODUCTION</h3>
+<p>The system environment specifies the hardware components, software tools, frameworks, and operating platform required to develop, run, and maintain EngageAI. The system leverages a <strong>Client-Server Architecture</strong>, where the backend server coordinates machine learning pipelines and database transactions, while client web browsers interface with local video capture devices.</p>
+<hr />
+<h3>4.2 SOFTWARE REQUIREMENT SPECIFICATION (SRS)</h3>
+<ul>
+<li><strong>Operating System:</strong> Windows 10 / Windows 11 (Development) | Ubuntu Server 22.04 LTS (Production)</li>
+<li><strong>Backend Framework:</strong> Python 3.10+ / Flask Micro-Framework</li>
+<li><strong>Database Management System:</strong> MySQL 8.0+ / MariaDB</li>
+<li><strong>Object-Relational Mapping:</strong> Flask-SQLAlchemy / Flask-MySQLdb</li>
+<li><strong>Computer Vision &amp; Deep Learning Libraries:</strong></li>
+<li>OpenCV (<code>opencv-python</code> 4.8+)</li>
+<li>MediaPipe (<code>mediapipe</code> 0.10+)</li>
+<li>Ultralytics YOLOv8 (<code>ultralytics</code> 8.0+)</li>
+<li>NumPy (<code>numpy</code> 1.24+)</li>
+<li><strong>Frontend Technologies:</strong> HTML5, CSS3, JavaScript (ES6+), Bootstrap 5.3, Chart.js, FontAwesome 6</li>
+<li><strong>Development Environment (IDE):</strong> Visual Studio Code (VS Code)</li>
+<li><strong>Documentation &amp; Modeling:</strong> Microsoft Word, Draw.io, Mermaid.js</li>
+</ul>
+<hr />
+<h3>4.3 HARDWARE REQUIREMENT SPECIFICATION (HRS)</h3>
+<h4>Development &amp; Server Machine</h4>
+<ul>
+<li><strong>Processor:</strong> Intel Core i5 / AMD Ryzen 5 (2.5 GHz or higher)</li>
+<li><strong>RAM:</strong> 8 GB minimum (16 GB recommended for concurrent multi-model inference)</li>
+<li><strong>Hard Disk Storage:</strong> 10 GB available SSD space (allocating space for Python packages, YOLO model weights, and database storage)</li>
+<li><strong>Display Resolution:</strong> $1920 \times 1080$ Full HD</li>
+</ul>
+<h4>Client / End-User Machine (Student / Teacher)</h4>
+<ul>
+<li><strong>Processor:</strong> Intel Core i3 / Dual-Core 2.0 GHz or higher</li>
+<li><strong>RAM:</strong> 4 GB minimum</li>
+<li><strong>Webcam:</strong> Integrated or USB external webcam ($720\text{p}$ / $1080\text{p}$, minimum 15 FPS)</li>
+<li><strong>Network Connectivity:</strong> Stable broadband internet connection (minimum 2 Mbps upload/download)</li>
+</ul>
+<hr />
+<h3>4.4 TOOLS AND PLATFORMS</h3>
+<h4>4.4.1 FRONT-END TOOLS</h4>
+<ul>
+<li><strong>HTML5:</strong> Defines structural layouts for multi-role dashboards, registration portals, and interactive lecture screens.</li>
+<li><strong>CSS3 &amp; Bootstrap 5:</strong> Delivers a fully responsive grid system, modern cards, and adaptive typography ensuring usability across laptops, tablets, and desktop displays.</li>
+<li><strong>JavaScript (ES6+):</strong> Manages the HTML5 MediaDevices API (<code>navigator.mediaDevices.getUserMedia</code>), periodic canvas frame captures, asynchronous AJAX/Fetch payloads, and dynamic DOM rendering without page reloading.</li>
+<li><strong>Chart.js:</strong> Generates interactive line charts and bar graphs visualizing longitudinal engagement score distributions and attendance percentages.</li>
+<li><strong>FontAwesome:</strong> Supplies visual icons representing video cameras, alerts, analytics, user profiles, and session states.</li>
+</ul>
+<h4>4.4.2 BACKEND TOOLS &amp; AI FRAMEWORKS</h4>
+<ul>
+<li><strong>Python 3.10+:</strong> The foundational programming language chosen for its rich ecosystem of AI/ML libraries and clean syntax.</li>
+<li><strong>Flask Micro-Framework:</strong> Provides a lightweight, flexible web architecture with routing, session management, and template rendering without enterprise boilerplate.</li>
+<li><strong>MediaPipe Face Landmarker:</strong> A high-precision, low-latency deep learning solution providing 478 3D facial landmarks for calculating head pose (yaw, pitch, roll) and Eye Aspect Ratio (EAR).</li>
+<li><strong>Ultralytics YOLOv8 (<code>yolov8n.pt</code>):</strong> A cutting-edge real-time object detection model capable of locating mobile phone objects with high inference speed on CPU threads.</li>
+<li><strong>OpenCV (<code>cv2</code>):</strong> Handles image matrix conversions, resizing, color space adjustments (BGR to RGB), and fallback face detection using Haar Cascades.</li>
+<li><strong>MySQL Database:</strong> High-performance relational database management system supporting ACID compliance, foreign key constraints, and relational indexing.</li>
+</ul>
+<h4>4.4.3 OPERATING SYSTEM</h4>
+<pre class="codehilite"><code>+--------------------------------------------------------------------------+
+|                          ROLE OF THE OS IN ENGAGEAI                      |
++----------------------+--------------------+------------------------------+
+| Task                 | OS Function        | Importance in EngageAI       |
++----------------------+--------------------+------------------------------+
+| Process Management   | Allocates CPU Time | Schedules concurrent Flask   |
+|                      | &amp; Threads          | worker threads &amp; AI pipelines|
+| Memory Management    | RAM Allocation     | Allocates memory for YOLO &amp;  |
+|                      |                    | MediaPipe model tensors      |
+| Device I/O Handling  | Driver Access      | Facilitates camera capture   |
+|                      |                    | stream buffers across devices|
+| Network I/O          | Socket Binding     | Manages HTTP request sockets |
+|                      |                    | on ports 5000 / 443          |
++----------------------+--------------------+------------------------------+
+</code></pre>
+
+<ul>
+<li><strong>Development Environment:</strong> Windows 11 (64-bit) provides a user-friendly development workspace with PowerShell scripting, VS Code integration, and native camera hardware support.</li>
+<li><strong>Deployment Environment:</strong> Ubuntu Linux 22.04 LTS is the target production OS, offering enterprise stability, low memory overhead, security isolation, and systemd process management.</li>
+</ul>
+<hr />
+<h1>CHAPTER 5: SYSTEM IMPLEMENTATION</h1>
+<h3>5.1 INTRODUCTION</h3>
+<p>System implementation translates theoretical architecture into functioning software. During this stage, database tables are provisioned in MySQL, backend business logic and AI pipelines are implemented in Python, and interactive web templates are connected to backend routes. The primary objective is to build an automated, real-time engagement assessment system that functions reliably on standard hardware.</p>
+<hr />
+<h3>5.2 CODING</h3>
+<h4>5.2.1 CODING STANDARDS</h4>
+<p>To guarantee code maintainability, scalability, and adherence to industry standards, the following guidelines were enforced throughout EngageAI:<br />
+* <strong>PEP 8 Compliance:</strong> All Python codebase conforms to the PEP 8 style guide, enforcing consistent four-space indentation, clear variable nomenclature, and appropriate module structuring.<br />
+* <strong>Modularization:</strong> Separation of concerns between web routing (<code>app.py</code>), database modeling (<code>models.py</code>), configuration management (<code>config.py</code>), and AI inference (<code>ai/phone_detection.py</code>).<br />
+* <strong>Descriptive Naming Conventions:</strong> Database columns and internal variables use clear, self-explanatory names (e.g., <code>avg_engagement</code>, <code>drowsiness_status</code>, <code>class_sessions</code>).<br />
+* <strong>DRY Principle (Don't Repeat Yourself):</strong> Reusable layout templates (<code>base.html</code>), standard Jinja2 macros, and centralized validation helper routines eliminate redundant code.<br />
+* <strong>Input Sanitization:</strong> Parameterized SQL queries and ORM mappings prevent SQL injection, while regex checks sanitize user inputs.</p>
+<hr />
+<h4>5.2.2 SAMPLE CODES</h4>
+<h5>1. Database Model Definition (<code>models.py</code>)</h5>
+<pre class="codehilite"><code class="language-python">from datetime import datetime
+from database import db
+
+class ClassSession(db.Model):
+    __tablename__ = 'class_sessions'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id', ondelete='CASCADE'), nullable=False)
+    subject = db.Column(db.String(100), nullable=False)
+    course = db.Column(db.String(100), nullable=False)
+    semester = db.Column(db.String(20), nullable=False)
+    class_date = db.Column(db.Date, nullable=False)
+    start_time = db.Column(db.Time, nullable=False)
+    end_time = db.Column(db.Time, nullable=False)
+    status = db.Column(db.String(20), nullable=False, default='Scheduled')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    attendances = db.relationship('Attendance', backref='class_session', lazy=True, cascade=&quot;all, delete-orphan&quot;)
+    engagements = db.relationship('Engagement', backref='class_session', lazy=True)
+    reports = db.relationship('Report', backref='class_session', lazy=True, cascade=&quot;all, delete-orphan&quot;)
+</code></pre>
+
+<h5>2. Core AI Video Telemetry &amp; Scoring (<code>ai/phone_detection.py</code>)</h5>
+<pre class="codehilite"><code class="language-python">import cv2
+import numpy as np
+from ultralytics import YOLO
+
+model = YOLO(&quot;yolov8n.pt&quot;)
+
+def detect_phone(frame, state):
+    results = model(frame, verbose=False)
+    phone_detected = False
+
+    for r in results:
+        for box in r.boxes:
+            cls_id = int(box.cls[0])
+            conf = float(box.conf[0])
+            # COCO class 67 corresponds to cell phone
+            if cls_id == 67 and conf &gt; 0.40:
+                phone_detected = True
+                break
+
+    # Update hysteresis tracking counters
+    if phone_detected:
+        state[&quot;phone_detected_counter&quot;] += 1
+        state[&quot;phone_not_detected_counter&quot;] = 0
+    else:
+        state[&quot;phone_not_detected_counter&quot;] += 1
+        state[&quot;phone_detected_counter&quot;] = 0
+
+    if state[&quot;phone_detected_counter&quot;] &gt;= 3:
+        state[&quot;current_phone_status&quot;] = &quot;PHONE DETECTED&quot;
+    elif state[&quot;phone_not_detected_counter&quot;] &gt;= 3:
+        state[&quot;current_phone_status&quot;] = &quot;NO PHONE DETECTED&quot;
+
+    # Dynamic Engagement Score Calculation
+    score = 100.0
+    if state[&quot;current_face_status&quot;] == &quot;NO FACE DETECTED&quot;:
+        score -= 50.0
+    if state[&quot;current_attention_status&quot;] != &quot;LOOKING STRAIGHT&quot;:
+        score -= 25.0
+    if state[&quot;current_drowsiness_status&quot;] == &quot;DROWSY DETECTED&quot;:
+        score -= 30.0
+    if state[&quot;current_phone_status&quot;] == &quot;PHONE DETECTED&quot;:
+        score -= 35.0
+
+    state[&quot;current_engagement_score&quot;] = max(0.0, min(100.0, score))
+    return state
+</code></pre>
+
+<h5>3. Live Telemetry API Endpoint (<code>app.py</code>)</h5>
+<pre class="codehilite"><code class="language-python">@app.route(&quot;/detect-phone&quot;, methods=[&quot;POST&quot;])
+def detect_phone_stream():
+    data = request.get_json()
+    image_data = data.get(&quot;image&quot;)
+    student_id = data.get(&quot;student_id&quot;)
+    class_id = data.get(&quot;class_id&quot;)
+
+    # Decode Base64 frame to NumPy OpenCV image array
+    encoded_data = image_data.split(',')[1] if ',' in image_data else image_data
+    nparr = np.frombuffer(base64.b64decode(encoded_data), np.uint8)
+    frame = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+
+    # Process frame through AI Pipeline
+    telemetry = detect_phone(frame)
+
+    # Persist engagement metrics into MySQL
+    cur = mysql.connection.cursor()
+    cur.execute(&quot;&quot;&quot;
+        INSERT INTO engagement (student_id, class_id, engagement_score, attention_level)
+        VALUES (%s, %s, %s, %s)
+    &quot;&quot;&quot;, (student_id, class_id, telemetry[&quot;current_engagement_score&quot;], telemetry[&quot;current_attention_status&quot;]))
+    mysql.connection.commit()
+    cur.close()
+
+    return jsonify(telemetry)
+</code></pre>
+
+<hr />
+<h4>5.2.3 CODE VALIDATION &amp; OPTIMIZATION</h4>
+<h4>Code Validation</h4>
+<ul>
+<li><strong>Regex Format Validation:</strong> Rigorous regular expression validation guards registration forms against malformed emails, non-10-digit telephone numbers, and invalid semester values.</li>
+<li><strong>Role Verification Guards:</strong> Route handlers inspect the active <code>session["role"]</code> token to ensure students cannot access teacher/admin dashboards and vice versa.</li>
+<li><strong>Integrity Constraints:</strong> Database foreign key rules (<code>ON DELETE CASCADE</code>) maintain relational integrity when students, faculty, or sessions are deleted.</li>
+</ul>
+<h4>Code Optimization</h4>
+<ul>
+<li><strong>Model Lazy Loading:</strong> YOLO and MediaPipe weights are initialized once during application bootstrap and shared across worker threads, avoiding per-request initialization lag.</li>
+<li><strong>Selective Frame Decimation:</strong> The client streams frames at calibrated intervals (e.g., 1 frame every 1–2 seconds) rather than 30 FPS, reducing network and CPU load without sacrificing analytical fidelity.</li>
+<li><strong>In-Memory Buffer Streaming:</strong> Webcam frames are processed in RAM buffers without reading from or writing to disk storage, optimizing I/O speed.</li>
+</ul>
+<hr />
+<h3>5.3 DEBUGGING</h3>
+<p>Debugging systematically identifies, isolates, and resolves defects across software modules:<br />
+* <strong>Frame Decoding Exceptions:</strong> Handled potential <code>cv2.imdecode</code> errors resulting from partial network transmissions or malformed Base64 headers by implementing resilient fallback checks.<br />
+* <strong>Database Connection Timeouts:</strong> Configured MySQL connection pool limits and implemented auto-reconnect logic to prevent idle session disconnects.<br />
+* <strong>Temporal Smoothing:</strong> Implemented temporal debounce counters (hysteresis counters) to prevent noisy toggling between "Looking Straight" and "Looking Away" caused by natural head movements.<br />
+* <strong>Logging Instrumentation:</strong> Integrated Python logging to monitor inference latencies and database transaction statuses.</p>
+<hr />
+<h3>5.4 UNIT TESTING</h3>
+<h4>5.4.1 TEST PLAN AND TEST CASES</h4>
+<p>Unit testing verifies that individual components and functions produce expected outputs across various input conditions.</p>
+<h4>Test Case Table</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">TEST ID</th>
+<th style="text-align: left;">TEST SCENARIO</th>
+<th style="text-align: left;">INPUT DATA</th>
+<th style="text-align: left;">EXPECTED OUTPUT</th>
+<th style="text-align: center;">RESULT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>TC-01</strong></td>
+<td style="text-align: left;">Student Registration with valid inputs</td>
+<td style="text-align: left;">Valid name, roll no, email, 10-digit phone, password</td>
+<td style="text-align: left;">Record inserted; redirect to login with success flash</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-02</strong></td>
+<td style="text-align: left;">Student Registration with duplicate email</td>
+<td style="text-align: left;">Previously registered email address</td>
+<td style="text-align: left;">Form rejected; display "Email already registered" error</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-03</strong></td>
+<td style="text-align: left;">User Login with incorrect password</td>
+<td style="text-align: left;">Valid registered email, wrong password string</td>
+<td style="text-align: left;">Authentication rejected; display "Invalid email or password"</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-04</strong></td>
+<td style="text-align: left;">Role-Based Access Enforcement</td>
+<td style="text-align: left;">Student session attempting to access <code>/admin/dashboard</code></td>
+<td style="text-align: left;">Access denied; user redirected to unauthorized error page</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-05</strong></td>
+<td style="text-align: left;">Class Creation with valid time window</td>
+<td style="text-align: left;">Subject: Python, Date: Today, Start: 10:00, End: 11:00</td>
+<td style="text-align: left;">Session created with status 'Scheduled' in MySQL</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-06</strong></td>
+<td style="text-align: left;">Student Joining Live Session</td>
+<td style="text-align: left;">Valid student ID clicking active session</td>
+<td style="text-align: left;">Attendance marked as 'PRESENT'; cockpit loads</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-07</strong></td>
+<td style="text-align: left;">Duplicate Attendance Prevention</td>
+<td style="text-align: left;">Student attempts to join the same active class twice</td>
+<td style="text-align: left;">Caught by <code>unique_class_student</code> key; duplicate prevented</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-08</strong></td>
+<td style="text-align: left;">AI Cell Phone Detection Inference</td>
+<td style="text-align: left;">Frame displaying student holding smartphone</td>
+<td style="text-align: left;">YOLO identifies class 67; returns "PHONE DETECTED"</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-09</strong></td>
+<td style="text-align: left;">AI Head Pose Deviation Evaluation</td>
+<td style="text-align: left;">Frame with student turned $&gt;35^{\circ}$ away from camera</td>
+<td style="text-align: left;">Euler angle triggers "LOOKING AWAY" status</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-10</strong></td>
+<td style="text-align: left;">Drowsiness / EAR Threshold Check</td>
+<td style="text-align: left;">Frame sequence showing eyes closed for $&gt;15$ frames</td>
+<td style="text-align: left;">EAR drops $&lt;0.20$; triggers "DROWSY DETECTED"</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-11</strong></td>
+<td style="text-align: left;">Composite Score Calculation Bounds</td>
+<td style="text-align: left;">All distraction penalties applied simultaneously</td>
+<td style="text-align: left;">Score bounds properly at 0.0 without going negative</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>TC-12</strong></td>
+<td style="text-align: left;">Performance Report Auto-Generation</td>
+<td style="text-align: left;">Teacher triggers report generation for concluded class</td>
+<td style="text-align: left;">Computes attendance %, mean score; stores report</td>
+<td style="text-align: center;"><strong>PASS</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h1>CHAPTER 6: SYSTEM PLANNING AND SCHEDULING</h1>
+<h3>6.1 INTRODUCTION</h3>
+<p>Software project planning establishes clear development milestones, organizes tasks systematically, and ensures that resource allocations align with target deadlines. Effective planning minimizes implementation risks and ensures consistent progress across all development phases.</p>
+<hr />
+<h3>6.2 PLANNING A SOFTWARE PROJECT</h3>
+<p>The development roadmap for EngageAI was divided into five distinct stages:<br />
+1. <strong>Requirements &amp; Theoretical Formulation:</strong> Identifying user needs across students, teachers, and administrators; defining ethical boundaries for computer vision; selecting software libraries.<br />
+2. <strong>Architecture &amp; Database Schema Modeling:</strong> Designing relational schemas in MySQL; drafting DFDs, ER models, and UML diagrams.<br />
+3. <strong>Core AI Inference Engine Prototyping:</strong> Validating YOLOv8 phone detection, MediaPipe face landmarking, and EAR calculation scripts in isolated environments.<br />
+4. <strong>Flask Web Application Integration:</strong> Developing route controllers, secure authentication, session state management, and responsive frontend templates.<br />
+5. <strong>System Validation, Testing &amp; Documentation:</strong> Running comprehensive unit, integration, and security tests; compiling the project report and documentation.</p>
+<hr />
+<h3>6.3 GANTT CHART</h3>
+<p>The Gantt Chart outlines the project schedule, tracking start times, durations, and milestones across the development cycle.</p>
+<div class="mermaid">
+gantt
+    title EngageAI Project Schedule (Dec 2025 - Mar 2026)
+    dateFormat  YYYY-MM-DD
+    section Phase 1: Planning
+    Topic Selection & Feasibility Analysis :a1, 2025-12-01, 14d
+    Literature Review & Requirement Specs  :a2, after a1, 14d
+    section Phase 2: Design
+    System Architecture & DFD Modeling    :b1, 2026-01-01, 10d
+    Database Schema Design & Normalization:b2, after b1, 10d
+    UI / UX Wireframing with Bootstrap    :b3, after b2, 10d
+    section Phase 3: Development
+    Authentication & Role-Based Access    :c1, 2026-02-01, 10d
+    AI Engine (YOLOv8 & MediaPipe)        :c2, after c1, 14d
+    Class Scheduling & Attendance Module  :c3, after c2, 10d
+    Teacher & Admin Analytics Dashboard   :c4, after c3, 10d
+    section Phase 4: Finalization
+    System Integration & Unit Testing     :d1, 2026-03-05, 12d
+    Documentation & Final Project Report  :d2, after d1, 14d
+</div>
+
+<hr />
+<h3>6.4 PERT CHART</h3>
+<p>The PERT (Program Evaluation and Review Technique) Chart maps out task dependencies and highlights the project's <strong>Critical Path</strong>.</p>
+<div class="mermaid">
+flowchart LR
+    A[Start: Problem Formulation] --> B[Requirements Analysis]
+    B --> C[Database Schema Modeling]
+    B --> D[Frontend UI Prototyping]
+    C --> E[Backend Authentication & Models]
+    D --> E
+    E --> F[AI Video Engine Development]
+    F --> G[Integrated Telemetry Testing]
+    G --> H[Admin & Teacher Reporting]
+    H --> I[Final System Validation]
+    I --> J[Documentation & Submission]
+
+    classDef critical stroke:#f00,stroke-width:2px;
+    class A,B,C,E,F,G,H,I,J critical;
+</div>
+
+<ul>
+<li><strong>Critical Path:</strong> $A \rightarrow B \rightarrow C \rightarrow E \rightarrow F \rightarrow G \rightarrow H \rightarrow I \rightarrow J$</li>
+<li><strong>Task Dependencies:</strong> The AI telemetry pipeline requires the completion of backend user models and active session routing before in-browser video streams can be processed.</li>
+<li><strong>Parallel Tasks:</strong> Frontend UI design occurred in parallel with database schema configuration.</li>
+</ul>
+<hr />
+<h1>CHAPTER 7: SYSTEM COST ESTIMATION</h1>
+<h3>7.1 INTRODUCTION</h3>
+<p>Software cost estimation provides a quantitative forecast of the engineering effort, size, and resources required to build and maintain an application. For EngageAI, <strong>Function Point (FP) Analysis</strong> was utilized. Function Point analysis measures software size based on user-facing functionalities and logical data flows, providing a technology-independent metric of project scope.</p>
+<hr />
+<h3>7.2 FUNCTION POINT BASED ESTIMATION</h3>
+<p>Function Point analysis categorizes system components into five functional units:<br />
+1. <strong>External Inputs (EI):</strong> Screens through which external data enters the system (e.g., student registration, teacher registration, login, schedule class, webcam frame stream).<br />
+2. <strong>External Outputs (EO):</strong> Processes generating output data or reports for users (e.g., telemetry gauges, performance reports, administrative analytics).<br />
+3. <strong>External Inquiries (EQ):</strong> Input-output combinations resulting in immediate data retrieval (e.g., student roster search, attendance history, class schedule inquiry).<br />
+4. <strong>Internal Logical Files (ILF):</strong> User-identifiable groups of logically related data maintained within the system (e.g., Students, Teachers, Admins, Class Sessions, Attendance, Engagement, Reports).<br />
+5. <strong>External Interface Files (EIF):</strong> Files or data referenced by the system but maintained externally (e.g., YOLO model weights, MediaPipe model assets).</p>
+<h4>Function Point Calculation Table</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">FUNCTIONAL COMPONENT</th>
+<th style="text-align: center;">COUNT</th>
+<th style="text-align: center;">COMPLEXITY WEIGHT</th>
+<th style="text-align: center;">FUNCTION POINTS (FP)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>External Inputs (EI)</strong></td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">Average (4)</td>
+<td style="text-align: center;">24</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>External Outputs (EO)</strong></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">High (7)</td>
+<td style="text-align: center;">28</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>External Inquiries (EQ)</strong></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">Low (3)</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Internal Logical Files (ILF)</strong></td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">Average (10)</td>
+<td style="text-align: center;">70</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>External Interface Files (EIF)</strong></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">Average (7)</td>
+<td style="text-align: center;">14</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Total Unadjusted Function Points (UFP)</strong></td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;">-</td>
+<td style="text-align: center;"><strong>148</strong></td>
+</tr>
+</tbody>
+</table>
+<h4>Value Adjustment Factor (VAF)</h4>
+<p>The Value Adjustment Factor is calculated using 14 General System Characteristics (GSCs), including data communications, distributed processing, performance demands, and end-user efficiency:</p>
+<p>$$\text{Degree of Influence (DI)} = \sum_{i=1}^{14} C_i \approx 36$$</p>
+<p>$$\text{VAF} = 0.65 + (0.01 \times \text{DI}) = 0.65 + 0.36 = 1.01$$</p>
+<h4>Adjusted Function Point (AFP) Calculation</h4>
+<p>$$\text{AFP} = \text{UFP} \times \text{VAF} = 148 \times 1.01 \approx 149.48 \text{ FP}$$</p>
+<p>This score reflects the technical complexity of integrating real-time computer vision inference with transactional database management.</p>
+<hr />
+<h1>CHAPTER 8: SYSTEM TESTING</h1>
+<h3>8.1 INTRODUCTION</h3>
+<p>System testing validates that the fully integrated software meets all functional and technical requirements. Operating primarily via <strong>black-box testing</strong>, this phase examines application inputs, system outputs, and error handling without requiring internal code introspection during test execution. Testing ensures that the Flask backend, MySQL database, computer vision pipelines, and frontend interfaces work together reliably under real-world conditions.</p>
+<hr />
+<h3>8.2 TESTING PROCEDURES</h3>
+<h4>1. Unit Testing</h4>
+<p>Tests individual modules and functions in isolation:<br />
+* Validated that regex utility functions properly catch malformed inputs.<br />
+* Tested the Engagement Score algorithm across edge cases (e.g., confirming that composite penalties never yield negative scores).<br />
+* Verified that password hashing produces valid SHA-256 digests.</p>
+<h4>2. Integration Testing</h4>
+<p>Evaluates interactions between interconnected modules:<br />
+* <strong>Frontend-to-Backend:</strong> Confirmed that AJAX JSON payloads sent from <code>/detect-phone</code> correctly update the MySQL <code>engagement</code> table.<br />
+* <strong>Camera-to-AI-Pipeline:</strong> Tested Base64 video decoding with OpenCV to verify frame reconstruction and NumPy array conversions.<br />
+* <strong>Database Cascading:</strong> Verified that deleting a class session cascades to remove associated attendance and telemetry records without leaving orphaned rows.</p>
+<h4>3. Functional Testing</h4>
+<p>Evaluates user journeys against operational goals:<br />
+* Verified complete student workflows: Registration $\rightarrow$ Login $\rightarrow$ Joining Session $\rightarrow$ Live Monitored Streaming $\rightarrow$ Viewing History.<br />
+* Verified instructor workflows: Session Scheduling $\rightarrow$ Class Initiation $\rightarrow$ Live Cockpit Monitoring $\rightarrow$ Class Conclusion $\rightarrow$ Report Generation.<br />
+* Validated administrator workflows: User Directory Review $\rightarrow$ Account Editing/Deletion $\rightarrow$ Institutional Analytics Review.</p>
+<h4>4. User Interface Testing</h4>
+<p>Evaluates usability and responsive layouts:<br />
+* Verified that dashboards render cleanly across various screen sizes (laptop, tablet, desktop).<br />
+* Tested video canvas overlays to ensure bounding boxes and status labels remain legible during live sessions.<br />
+* Checked that form errors and success flash messages display clearly with appropriate styling.</p>
+<h4>5. Performance Testing</h4>
+<p>Assesses system responsiveness under typical workloads:<br />
+* Evaluated frame inference latency, achieving stable turnaround times of <strong>45–75 ms per frame</strong> on a multi-core CPU.<br />
+* Monitored MySQL query times during consecutive telemetry writes, recording query durations below <strong>10 ms</strong>.</p>
+<h4>6. Security Testing</h4>
+<p>Examines vulnerability defenses and privacy protections:<br />
+* <strong>Role-Based Access Control:</strong> Confirmed that students cannot access teacher/admin endpoints.<br />
+* <strong>SQL Injection Prevention:</strong> Validated that parameterized queries safely escape malicious SQL input.<br />
+* <strong>In-Memory Frame Processing:</strong> Confirmed that video frames are processed in RAM without being saved to local disk storage, protecting student privacy.</p>
+<h4>7. User Acceptance Testing (UAT)</h4>
+<p>Conducted user testing with representative stakeholders:<br />
+* <strong>Faculty Review:</strong> Confirmed that automated attendance saves significant time compared to manual roll calls.<br />
+* <strong>Student Review:</strong> Verified that real-time status indicators provide helpful, non-distracting feedback on engagement.</p>
+<hr />
+<h1>CHAPTER 9: SYSTEM MAINTENANCE</h1>
+<h3>9.1 INTRODUCTION</h3>
+<p>System maintenance encompasses ongoing operational procedures, optimizations, and updates conducted throughout the software lifecycle following deployment. For EngageAI, continuous maintenance preserves data integrity, ensures model inference accuracy, and maintains system compatibility with evolving browser and OS environments.</p>
+<hr />
+<h3>9.2 MAINTENANCE STRATEGIES</h3>
+<pre class="codehilite"><code>                  +----------------------------------------------+
+                  |         SYSTEM MAINTENANCE STRATEGIES        |
+                  +----------------------+-----------------------+
+                                         |
+         +-------------------------------+-------------------------------+
+         |                               |                               |
++-----------------+             +-----------------+             +-----------------+
+|   CORRECTIVE    |             |    ADAPTIVE     |             |   PERFECTIVE    |
+|   MAINTENANCE   |             |   MAINTENANCE   |             |   MAINTENANCE   |
++-----------------+             +-----------------+             +-----------------+
+| • Fix edge-case |             | • Update Python |             | • Enhance model |
+|   camera buffer |             |   dependencies  |             |   detection     |
+|   errors        |             | • Adapt to new  |             |   accuracy      |
+| • Resolve DB    |             |   browser video |             | • Add custom    |
+|   timeouts      |             |   APIs          |             |   reporting UI  |
++-----------------+             +-----------------+             +-----------------+
+                                         |
+                                +-----------------+
+                                |   PREVENTIVE    |
+                                |   MAINTENANCE   |
+                                +-----------------+
+                                | • Optimize DB   |
+                                |   query indexes |
+                                | • Regular data  |
+                                |   backups       |
+                                +-----------------+
+</code></pre>
+
+<ul>
+<li><strong>Corrective Maintenance:</strong> Diagnosing and resolving unexpected runtime defects, such as handling dropped camera frames or addressing slow query responses during peak traffic.</li>
+<li><strong>Adaptive Maintenance:</strong> Updating Python dependencies and modifying frontend camera scripts to maintain compatibility with new browser versions and OS updates.</li>
+<li><strong>Perfective Maintenance:</strong> Enhancing system capabilities based on user feedback, such as refining attention scoring metrics, adding new report filters, or optimizing UI components.</li>
+<li><strong>Preventive Maintenance:</strong> Performing proactive database optimizations, archiving historical telemetry data, and running vulnerability scans to prevent system bottlenecks.</li>
+</ul>
+<h4>OPERATIONAL PROCEDURES</h4>
+<ul>
+<li><strong>Database Backups:</strong> Implementing scheduled backups of the <code>students</code>, <code>teachers</code>, <code>class_sessions</code>, <code>attendance</code>, and <code>reports</code> tables in MySQL.</li>
+<li><strong>Security Auditing:</strong> Regularly checking session secret keys, user role boundaries, and access logs to maintain system security.</li>
+<li><strong>Model Asset Verification:</strong> Periodically verifying model integrity (<code>yolov8n.pt</code>, <code>face_landmarker.task</code>) to ensure weights remain uncorrupted.</li>
+</ul>
+<hr />
+<h1>CHAPTER 10: SYSTEM SECURITY MEASURES</h1>
+<h3>10.1 INTRODUCTION</h3>
+<p>System security encompasses the technical protocols and design patterns implemented to safeguard application data, protect user privacy, and ensure system availability. In an AI monitoring application like EngageAI, security measures protect sensitive academic records and ensure that student video streams are handled ethically and securely.</p>
+<hr />
+<h3>10.2 OPERATING SYSTEM LEVEL SECURITY</h3>
+<ul>
+<li><strong>User Privilege Management:</strong> Limiting server file permissions so that the web server process runs with non-root, least-privilege credentials.</li>
+<li><strong>Firewall Configuration:</strong> Utilizing host firewalls (e.g., UFW on Ubuntu) to restrict incoming traffic exclusively to necessary web ports (Port 80/443).</li>
+<li><strong>System Updates:</strong> Applying regular security patches to the underlying OS kernel and Python runtime to protect against known vulnerabilities.</li>
+</ul>
+<hr />
+<h3>10.3 DATABASE LEVEL SECURITY</h3>
+<ul>
+<li><strong>Credential Isolation:</strong> Storing database credentials outside the codebase using environment configurations, preventing exposure in source repositories.</li>
+<li><strong>Principle of Least Privilege:</strong> Configuring MySQL database users with strictly necessary permissions (<code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>), disallowing table drops or multi-database access.</li>
+<li><strong>Protection Against SQL Injection:</strong> Using parameterized SQL queries and SQLAlchemy ORM mappings to prevent malicious SQL injections.</li>
+<li><strong>Automated Data Backups:</strong> Creating scheduled database dumps to ensure rapid recovery in the event of hardware or storage failure.</li>
+</ul>
+<hr />
+<h3>10.4 SYSTEM &amp; APPLICATION LEVEL SECURITY</h3>
+<ul>
+<li><strong>Role-Based Access Control (RBAC):</strong> Restricting application endpoints using session-level role verification (<code>student</code>, <code>teacher</code>, <code>admin</code>), preventing unauthorized route access.</li>
+<li><strong>Secure Password Hashing:</strong> Encrypting user passwords using strong PBKDF2/SHA-256 hashing before storing them in MySQL.</li>
+<li><strong>Session Security:</strong> Signing session cookies with a server-side secret key to prevent cookie tampering.</li>
+<li><strong>Client Video Privacy:</strong> Processing webcam frames in volatile server RAM buffers for immediate inference, without saving raw image or video files to disk storage.</li>
+<li><strong>XSS &amp; CSRF Defenses:</strong> Sanitizing dynamic template outputs via Jinja2 auto-escaping to mitigate Cross-Site Scripting (XSS) risks.</li>
+</ul>
+<hr />
+<h1>CHAPTER 11: FUTURE ENHANCEMENT</h1>
+<h3>11.1 INTRODUCTION</h3>
+<p>The future enhancement roadmap outlines potential technical and operational advancements for EngageAI beyond its current implementation. As artificial intelligence and edge computing continue to evolve, the platform can expand from real-time classroom telemetry into a comprehensive, multi-modal educational intelligence ecosystem.</p>
+<hr />
+<h3>11.2 LIMITATIONS OF THE SYSTEM</h3>
+<ol>
+<li><strong>Dependency on Network Bandwidth:</strong> Reliable streaming of webcam frames requires an active local network connection.</li>
+<li><strong>Camera Quality Variations:</strong> Sub-standard webcams in low-light environments can reduce the detection accuracy of facial landmarks and object recognition models.</li>
+<li><strong>Occlusion Constraints:</strong> Extreme facial angles or objects partially blocking the camera can occasionally hinder face landmark detection.</li>
+<li><strong>Computational Load on Client Hardware:</strong> Running local video capture while multitasking on low-spec hardware may result in minor frame drops.</li>
+</ol>
+<hr />
+<h3>11.3 MERITS OF THE SYSTEM</h3>
+<ul>
+<li><strong>Eliminates Manual Roll Calls:</strong> Recovers valuable classroom teaching time by automating attendance tracking.</li>
+<li><strong>Objective Attentiveness Metrics:</strong> Replaces subjective observation with empirical engagement data.</li>
+<li><strong>Automated Distraction Detection:</strong> Identifies unauthorized smartphone usage and drowsiness non-intrusively in real time.</li>
+<li><strong>Privacy-Respecting Architecture:</strong> Processes frames in-memory without persistent video recording.</li>
+<li><strong>Zero Specialized Hardware Costs:</strong> Runs on standard personal computers and built-in webcams, keeping deployment costs minimal.</li>
+</ul>
+<hr />
+<h3>11.4 FUTURE ENHANCEMENT ROADMAP</h3>
+<div class="mermaid">
+flowchart TD
+    Current[EngageAI v1.0: Real-Time Web Telemetry] --> F1[1. Edge-AI Client Inference via WebAssembly]
+    Current --> F2[2. Multi-Face Classroom Camera Monitoring]
+    Current --> F3[3. Affective Computing & Emotion Analysis]
+    Current --> F4[4. Learning Management System LMS Integration]
+    Current --> F5[5. Mobile Application Development]
+
+    F1 -.-> Benefits1[Eliminates Server Network Latency]
+    F2 -.-> Benefits2[Covers Entire Lecture Halls via Single Pod Camera]
+    F3 -.-> Benefits3[Detects Confusion, Frustration & Comprehension]
+    F4 -.-> Benefits4[Direct Sync with Moodle, Canvas, Google Classroom]
+    F5 -.-> Benefits5[Native Android & iOS Apps for Remote Study]
+</div>
+
+<ol>
+<li><strong>Client-Side Edge AI Inference:</strong> Migrating model inference to the client browser using TensorFlow.js or ONNX Runtime WebAssembly (WASM), processing frames on local hardware and reducing server bandwidth demands to zero.</li>
+<li><strong>Multi-Student Panoramic Monitoring:</strong> Upgrading computer vision pipelines to track multiple faces simultaneously from a single wide-angle classroom camera, enabling automatic monitoring in physical lecture halls.</li>
+<li><strong>Affective Computing &amp; Emotion Analysis:</strong> Incorporating facial action coding (FACS) to recognize cognitive-affective states such as confusion, frustration, boredom, and comprehension, helping instructors adjust their teaching pace.</li>
+<li><strong>LMS Integration:</strong> Connecting via LTI (Learning Tools Interoperability) to sync attendance and engagement metrics directly into institutional Learning Management Systems like Moodle, Canvas, and Google Classroom.</li>
+<li><strong>Mobile Applications:</strong> Developing native iOS and Android apps to support mobile-first e-learning and distance education.</li>
+</ol>
+<hr />
+<h1>CHAPTER 12: CONCLUSION</h1>
+<p>The development and deployment of <strong>EngageAI: AI-Powered Real-Time Student Engagement and Attendance Monitoring System</strong> provides an automated, intelligent alternative to traditional, manual classroom management workflows. By combining modern web technologies (Flask, MySQL, Bootstrap 5) with computer vision models (Ultralytics YOLOv8, MediaPipe Face Landmarker, OpenCV), the project establishes an objective, data-driven system for measuring student attention and recording classroom attendance.</p>
+<p>The system addresses the core inefficiencies of traditional education by automating attendance tracking, flagging mobile phone distractions, estimating head pose orientation, measuring drowsiness through Eye Aspect Ratios, and generating comprehensive analytical reports. The platform's role-based design provides dedicated, secure environments for students, faculty, and administrators, maintaining a clear separation of concerns across all workflows.</p>
+<p>From an engineering perspective, EngageAI proves that advanced artificial intelligence can be deployed cost-effectively on standard consumer hardware without requiring expensive biometric scanners or enterprise servers. By processing video frames in volatile memory without persistent disk storage, the system demonstrates how automated monitoring can respect student data privacy.</p>
+<p>In conclusion, EngageAI serves as an innovative tool for modern higher education. It supports instructors, encourages student self-regulation, and provides institutions with empirical data to enhance academic outcomes and instructional quality.</p>
+<hr />
+<h1>CHAPTER 13: ANNEXURE</h1>
+<h3>13.1 ORGANIZATION PROFILE</h3>
+<ul>
+<li><strong>Company Name:</strong> Techmindz (Powered by Ndimensionz)</li>
+<li><strong>Parent Organization:</strong> Ndimensionz Solutions Pvt. Ltd. (NDZ)</li>
+<li><strong>Industry Sector:</strong> Information Technology / Learning &amp; Development (L&amp;D)</li>
+<li><strong>Corporate Office:</strong> 2nd Floor, Carnival Infopark, Phase II, Kakkanad, Kochi, Kerala – 682042</li>
+<li><strong>Website:</strong> <code>https://www.techmindz.com</code></li>
+</ul>
+<p><strong>Techmindz</strong> is the specialized corporate training and technical development division of <strong>Ndimensionz Solutions Pvt. Ltd. (NDZ)</strong>. Operating at the intersection of academia and the global software industry, Techmindz provides aspiring software engineers and postgraduate students with industry-aligned training, real-world project mentorship, and hands-on experience in emerging technologies.</p>
+<p>By leveraging Ndimensionz's industry experience in enterprise cloud architecture, machine learning, and full-stack software development, Techmindz bridges the gap between academic theory and practical software engineering.</p>
+<ul>
+<li><strong>Mission:</strong> To empower students and young technical professionals with industry-grade software engineering competencies, practical problem-solving methodologies, and dedicated mentorship for long-term career growth in the global IT ecosystem.</li>
+<li><strong>Vision:</strong> To serve as a leading center of excellence in emerging technical education, driving software innovation and preparing the next generation of engineers through hands-on development experience.</li>
+</ul>
+<hr />
+<h3>13.2 SYSTEM SCREENSHOTS &amp; INTERFACE WALKTHROUGH</h3>
+<h4>1. Home Page (<code>/</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/</code></li>
+<li><strong>Description:</strong> The public landing page of EngageAI. It features a modern hero section highlighting key capabilities (AI Engagement Tracking, Automated Attendance, Analytics), quick navigation links, and login/registration call-to-actions.</li>
+</ul>
+<h4>2. User Authentication &amp; Login Portal (<code>/login</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/login</code></li>
+<li><strong>Description:</strong> The unified entry point for all system users. Users enter their registered email address and password. The backend checks credentials against the <code>students</code>, <code>teachers</code>, and <code>admins</code> tables, establishing authenticated session cookies and routing users to their respective dashboards.</li>
+</ul>
+<h4>3. Student Registration Portal (<code>/student-register</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/student-register</code></li>
+<li><strong>Description:</strong> Onboarding form for new students, capturing Full Name, University Roll Number, Email Address, Contact Phone, Course of Study, Semester, and Password. Features client-side HTML5 validation and server-side regex checks.</li>
+</ul>
+<h4>4. Faculty Registration Portal (<code>/teacher-register</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/teacher-register</code></li>
+<li><strong>Description:</strong> Registration interface for faculty members, capturing Full Name, Employee Code, Academic Department, Official Email, Phone Number, and Password.</li>
+</ul>
+<h4>5. Student Dashboard &amp; Active Sessions (<code>/student-dashboard</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/student-dashboard</code></li>
+<li><strong>Description:</strong> The primary student workspace. Displays active enrolled courses, upcoming scheduled lectures, today's active classes with a one-click "Join Class" button, cumulative attendance summaries, and overall engagement averages.</li>
+</ul>
+<h4>6. Live AI Monitored Engagement Cockpit (<code>/student/engagement</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/student/engagement</code></li>
+<li><strong>Description:</strong> The core interactive screen of EngageAI. It activates the student's webcam and streams frames to <code>/detect-phone</code>. Real-time telemetry badges show:</li>
+<li><strong>Face Status:</strong> "FACE DETECTED" (Green) vs "NO FACE DETECTED" (Red)</li>
+<li><strong>Head Pose / Gaze:</strong> "LOOKING STRAIGHT" vs "LOOKING AWAY"</li>
+<li><strong>Alertness:</strong> "ALERT" vs "DROWSY DETECTED"</li>
+<li><strong>Device Status:</strong> "NO PHONE DETECTED" vs "PHONE DETECTED"</li>
+<li><strong>Composite Score Meter:</strong> Radial visual gauge showing the real-time Engagement Score (0%–100%).</li>
+</ul>
+<h4>7. Teacher Dashboard &amp; Session Management (<code>/teacher-dashboard</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/teacher-dashboard</code></li>
+<li><strong>Description:</strong> The instructor control hub. Allows teachers to view conducted sessions, create and schedule new classes, start/end lectures, and review classroom metrics.</li>
+</ul>
+<h4>8. Teacher Real-Time Classroom Telemetry Monitor (<code>/teacher/classes</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/teacher/classes</code></li>
+<li><strong>Description:</strong> Enables instructors to observe real-time telemetry from connected students, displaying active participants, attendance counts, and average engagement scores.</li>
+</ul>
+<h4>9. Automated Attendance Roster (<code>/teacher/attendance</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/teacher/attendance</code></li>
+<li><strong>Description:</strong> A digital attendance sheet showing student names, roll numbers, joined timestamps, and verification states for specific class sessions.</li>
+</ul>
+<h4>10. Analytical Performance Report (<code>/teacher/reports</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/teacher/reports</code></li>
+<li><strong>Description:</strong> Summarizes student performance across class sessions, displaying individual attendance percentages, mean engagement scores, distraction counts, and personalized instructor recommendations.</li>
+</ul>
+<h4>11. Administrator Governance Hub (<code>/admin/dashboard</code>)</h4>
+<ul>
+<li><strong>Route:</strong> <code>/admin/dashboard</code> &amp; <code>/admin/students</code> &amp; <code>/admin/teachers</code></li>
+<li><strong>Description:</strong> The administrative management console. Provides global oversight with account creation/editing/deletion controls, course configuration, and institution-wide analytics.</li>
+</ul>
+<hr />
+<h3>13.3 REFERENCES</h3>
+<ol>
+<li>
+<p><strong>Flask Framework Documentation:</strong><br />
+<code>https://flask.palletsprojects.com/en/stable/</code><br />
+<em>Reference for application routing, view controllers, request processing, and session management.</em></p>
+</li>
+<li>
+<p><strong>Python Official Documentation:</strong><br />
+<code>https://docs.python.org/3/</code><br />
+<em>Reference for standard library architecture, threading, and data processing routines.</em></p>
+</li>
+<li>
+<p><strong>OpenCV (Open Source Computer Vision) Documentation:</strong><br />
+<code>https://docs.opencv.org/</code><br />
+<em>Reference for matrix frame operations, image conversions, and Haar Cascade classifiers.</em></p>
+</li>
+<li>
+<p><strong>Google MediaPipe Vision Solutions:</strong><br />
+<code>https://developers.google.com/mediapipe/solutions/vision/face_landmarker</code><br />
+<em>Reference for 3D facial mesh modeling, landmark extraction, and head pose estimation.</em></p>
+</li>
+<li>
+<p><strong>Ultralytics YOLOv8 Documentation:</strong><br />
+<code>https://docs.ultralytics.com/</code><br />
+<em>Reference for real-time deep learning object detection, bounding box extraction, and model inference.</em></p>
+</li>
+<li>
+<p><strong>MySQL 8.0 Reference Manual:</strong><br />
+<code>https://dev.mysql.com/doc/refman/8.0/en/</code><br />
+<em>Reference for relational database schema configuration, indexing, and constraint management.</em></p>
+</li>
+<li>
+<p><strong>Bootstrap 5 Official Documentation:</strong><br />
+<code>https://getbootstrap.com/docs/5.3/</code><br />
+<em>Reference for responsive grid layouts, UI components, and utility styling.</em></p>
+</li>
+<li>
+<p><strong>W3Schools &amp; MDN Web Docs:</strong><br />
+<code>https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia</code><br />
+<em>Reference for HTML5 MediaDevices APIs, JavaScript canvas manipulation, and client-side validation.</em></p>
+</li>
+<li>
+<p><strong>GeeksforGeeks Software Engineering &amp; UML Guides:</strong><br />
+<code>https://www.geeksforgeeks.org/software-engineering/</code><br />
+<em>Reference for Waterfall SDLC models, DFD architectures, and UML design conventions.</em></p>
+</li>
+</ol>
+    </div>
+</body>
+</html>

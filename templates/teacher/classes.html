@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Classes - EngageAI</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+background:#FDF6E3;
+}
+
+.sidebar{
+position:fixed;
+left:0;
+top:0;
+width:250px;
+height:100%;
+background:#1E1B4B;
+color:white;
+padding:30px 20px;
+}
+
+.sidebar h2{
+margin-bottom:40px;
+}
+
+.sidebar ul{
+list-style:none;
+}
+
+.sidebar ul li{
+margin:20px 0;
+}
+
+.sidebar ul li a{
+color:white;
+text-decoration:none;
+font-size:18px;
+}
+
+.sidebar ul li a.active{
+font-weight:700;
+color:#10B981;
+}
+
+.main{
+margin-left:260px;
+padding:30px;
+}
+
+.flash-messages{
+margin-bottom:20px;
+}
+
+.flash-msg{
+background:#1E1B4B;
+color:white;
+padding:12px 20px;
+border-radius:8px;
+margin-bottom:10px;
+font-size:14px;
+}
+
+.form-container{
+background:white;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+margin-bottom:30px;
+}
+
+.form-container h2{
+margin-bottom:20px;
+color:#1E1B4B;
+}
+
+.class-form{
+display:grid;
+grid-template-columns:repeat(auto-fit, minmax(180px, 1fr));
+gap:15px;
+align-items:start;
+}
+
+.form-group input.is-invalid, .form-group select.is-invalid{
+border-color:#DC2626 !important;
+border-width:2px !important;
+}
+
+.field-error{
+color:#DC2626;
+font-size:12px;
+margin-top:4px;
+font-weight:500;
+display:none;
+}
+
+.form-group{
+display:flex;
+flex-direction:column;
+gap:5px;
+}
+
+.form-group label{
+font-size:14px;
+font-weight:500;
+color:#333;
+}
+
+.form-group input, .form-group select{
+padding:10px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:14px;
+outline:none;
+width:100%;
+}
+
+.btn{
+padding:10px 20px;
+border:none;
+border-radius:8px;
+font-weight:600;
+cursor:pointer;
+transition:0.2s ease;
+font-size:14px;
+}
+
+.btn-primary{ background:#1E1B4B; color:white; }
+.btn-success{ background:#10B981; color:white; }
+.btn-danger{ background:#EF4444; color:white; }
+
+.badge{
+padding:5px 12px;
+border-radius:20px;
+font-size:13px;
+font-weight:600;
+display:inline-block;
+}
+
+.badge-scheduled{ background:#FEF3C7; color:#92400E; border:1px solid #FDE68A; }
+.badge-in-progress, .badge-active{ background:#D1FAE5; color:#065F46; border:1px solid #A7F3D0; }
+.badge-completed{ background:#DBEAFE; color:#1E40AF; border:1px solid #BFDBFE; }
+.badge-not-taken{ background:#FEE2E2; color:#991B1B; border:1px solid #FECACA; }
+
+table{
+width:100%;
+border-collapse:collapse;
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 5px 15px rgba(0,0,0,.15);
+margin-bottom:30px;
+}
+
+table th{
+background:#1E1B4B;
+color:white;
+padding:15px;
+}
+
+table td{
+padding:15px;
+text-align:center;
+border-bottom:1px solid #ddd;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+<h2>EngageAI</h2>
+
+<ul>
+
+<li><a href="/teacher-dashboard">Dashboard</a></li>
+
+<li><a href="/teacher/profile">My Profile</a></li>
+
+<li><a href="/teacher/classes" class="active">Classes</a></li>
+
+<li><a href="/teacher/attendance">Attendance</a></li>
+
+<li><a href="/teacher/reports">Reports</a></li>
+
+<li><a href="/logout">Logout</a></li>
+
+</ul>
+
+</div>
+
+<div class="main">
+
+<h1>Class Sessions Management</h1>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+        <div class="flash-msg">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}
+
+<!-- Create Class Section -->
+<div class="form-container" style="margin-top: 20px;">
+<h2>Create New Class Session</h2>
+<form action="/teacher/create-class" method="POST" class="class-form" id="createClassForm" novalidate>
+
+<div class="form-group">
+<label for="subject">Subject</label>
+<input type="text" id="subject" name="subject" placeholder="e.g. Mathematics" required>
+<div id="subjectError" class="field-error"></div>
+</div>
+
+<div class="form-group">
+<label for="course">Course</label>
+<input type="text" id="course" name="course" placeholder="e.g. B.Tech CS" required>
+<div id="courseError" class="field-error"></div>
+</div>
+
+<div class="form-group">
+<label for="semester">Semester</label>
+<select id="semester" name="semester" required>
+<option value="" disabled selected>Select Semester</option>
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+</select>
+<div id="semesterError" class="field-error"></div>
+</div>
+
+<div class="form-group">
+<label for="class_date">Date</label>
+<input type="date" id="class_date" name="class_date" min="{{ today_date }}" max="{{ max_date }}" required>
+<div id="dateError" class="field-error"></div>
+</div>
+
+<div class="form-group">
+<label for="start_time">Start Time (12h AM/PM)</label>
+<input type="text" id="start_time" name="start_time" placeholder="e.g. 09:30 AM" pattern="^(0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM|am|pm)$" required>
+<div id="startTimeError" class="field-error"></div>
+</div>
+
+<div class="form-group">
+<label for="end_time">End Time (12h AM/PM)</label>
+<input type="text" id="end_time" name="end_time" placeholder="e.g. 11:00 AM" pattern="^(0?[1-9]|1[0-2]):[0-5][0-9]\s?(AM|PM|am|pm)$" required>
+<div id="endTimeError" class="field-error"></div>
+</div>
+
+<div class="form-group" style="align-self: flex-start;">
+<button type="submit" class="btn btn-primary" id="createClassBtn" style="height: 42px; margin-top: 24px; width: 100%;">Create Class</button>
+</div>
+</form>
+</div>
+
+<h2 style="margin-bottom: 15px; color: #1E1B4B;">All Class Sessions</h2>
+
+{% if classes %}
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Subject</th>
+<th>Course</th>
+<th>Semester</th>
+<th>Date</th>
+<th>Time Range</th>
+<th>Status</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+{% for cls in classes %}
+<tr>
+<td>{{ cls.id }}</td>
+<td>{{ cls.subject }}</td>
+<td>{{ cls.course }}</td>
+<td>{{ cls.semester }}</td>
+<td>{{ cls.class_date_str }}</td>
+<td>{{ cls.start_time_str }} - {{ cls.end_time_str }}</td>
+<td>
+{% if cls.status == 'In Progress' %}
+<span class="badge badge-in-progress">In Progress</span>
+{% elif cls.status == 'Completed' %}
+<span class="badge badge-completed">Completed</span>
+{% elif cls.status == 'Not Taken' %}
+<span class="badge badge-not-taken">Not Taken</span>
+{% else %}
+<span class="badge badge-scheduled">Scheduled</span>
+{% endif %}
+</td>
+<td>
+{% if cls.status == 'In Progress' %}
+<form action="/teacher/end-class/{{ cls.id }}" method="POST" style="display:inline;">
+<button type="submit" class="btn btn-danger" title="End this class session">End Class</button>
+</form>
+{% elif cls.status == 'Completed' %}
+<a href="/teacher/reports?class_id={{ cls.id }}" class="btn btn-primary" style="text-decoration:none; display:inline-block;" title="View class engagement report">View Report</a>
+{% elif cls.status == 'Not Taken' %}
+<button class="btn" disabled style="background:#9CA3AF; color:white; opacity:0.5; cursor:not-allowed;" title="Class session expired (Not Taken)">Start Class</button>
+<span style="display:block; color:#DC2626; font-size:12px; font-weight:600; margin-top:4px;">Not Taken</span>
+{% else %}
+{% if cls.can_start %}
+<form action="/teacher/start-class/{{ cls.id }}" method="POST" style="display:inline;">
+<button type="submit" class="btn btn-success" title="Start this class session">Start Class</button>
+</form>
+{% else %}
+<button class="btn" disabled style="background:#9CA3AF; color:white; opacity:0.6; cursor:not-allowed;" title="Start available on scheduled date within 2 hours of start time">Start Class</button>
+{% endif %}
+{% endif %}
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}
+<p style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,.15); text-align: center; color: #666;">No class sessions created yet.</p>
+{% endif %}
+
+</div>
+
+<script src="{{ url_for('static', filename='js/class_validation.js') }}"></script>
+</body>
+
+</html>
